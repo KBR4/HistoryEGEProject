@@ -6,18 +6,34 @@ using System.Threading.Tasks;
 
 namespace HistLib
 {
-    public class Sect   //класс раздел. каждому разделу соответствует карта (через сурс), и массив вопрос-ответ = тест
+    //Пока что оставляю все публичным. С грамотной инкапсуляцией разберемся при рефакторинге.
+    public class Sect   //Класс раздел. Каждому разделу соответствует лист тестов по нему. (возможно с разными картами)
     {
-        public string Name { get; set; }
-        public string Source { get; set; }
+        public string Name { get; set; }    //название раздела
+        public List<Test> Tests;            //лист для хранения тестов
+        public Sect(string s)               //конструктор для создания раздела по названию
+        {
+            Name = s;
+            Tests = new List<Test>();
+        }
+        public void AddTest(Test t)         //функция добавления теста в раздел (возможно не нужна)
+        {
+            Tests.Add(t);
+        }
+    }
+    public class Test   //класс тест. каждому тесту соответствует карта (через сурс), и массив вопрос-ответ = тест
+    {
+        public string Name { get; set; }        //Название теста (тема)
+        public string Source { get; set; }      //Источник для изображения
 
-        public List<QuestionAnswer> AllQuestionsAnswers;
+        public List<QuestionAnswer> AllQuestionsAnswers; //Лист вопросов - ответов
 
-        public Sect(String name)
+        public Test(String name)        //Создание темы по названию
         {
             Name = name;
         }
-        public Sect(String name, string source, List<QuestionAnswer> QA)
+        //Конструктор ниже будет использоваться для создания тестов десериализованных из файлов
+        public Test(String name, string source, List<QuestionAnswer> QA)    //Создание темы по названию, изображению, массиву вопросов-ответов
         {
             Name = name;
             Source = source;            //TO DO: проверка подгрузки картинки
@@ -60,8 +76,8 @@ namespace HistLib
     }
     public class Answer                         //ответ - хранит информацию о всех принимающихся ответах на вопрос
     {
-        private List<string> AnswerOptions;
-        public Answer(List<string> ls)
+        private List<string> AnswerOptions; //Подумать нужно ли иметь несколько вариантов ответа на вопрос или достаточно игнорировать регистр
+        public Answer(List<string> ls)      //Если возможных ответов несколько использовать этот конструктор
         {
             AnswerOptions = new List<string>();
             if (ls.Count > 0)
@@ -73,7 +89,7 @@ namespace HistLib
                 //MessageBox.Show("Введите ответы!");
             }
         }
-        public Answer(string answer)
+        public Answer(string answer)    //Если вариант ответа один, использовать этот конструктор
         {
             AnswerOptions = new List<string>();
             AnswerOptions.Add(answer);
@@ -88,7 +104,6 @@ namespace HistLib
         }
     }
     public class QuestionAnswer //отвечает за вопрос - ответ на экране, чтобы не путаться с тем, какому вопросу какой ответ соотвтетсвует.
-                                //возможно поменять потом эту структуру
     {
         public Question question { get; set; }
         public Answer answer { get; set; }
