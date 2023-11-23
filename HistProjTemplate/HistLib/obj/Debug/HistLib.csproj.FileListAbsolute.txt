@@ -1,0 +1,6 @@
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistLib\bin\Debug\HistLib.dll
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistLib\bin\Debug\HistLib.pdb
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistLib\obj\Debug\HistLib.csproj.AssemblyReference.cache
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistLib\obj\Debug\HistLib.csproj.CoreCompileInputs.cache
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistLib\obj\Debug\HistLib.dll
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistLib\obj\Debug\HistLib.pdb
