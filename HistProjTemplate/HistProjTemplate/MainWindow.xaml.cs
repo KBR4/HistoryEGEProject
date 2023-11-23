@@ -21,9 +21,10 @@ namespace HistProjTemplate
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Sect> Sections;         //лист со всеми разделами
+        private List<Sect> Sections;      //лист со всеми разделами
+        private List<Test> Tests;         //лист со всеми тестами текущего раздела - временно
         private Statistics CurrentStatistic;    //статистика для текущего теста
-        private Sect CurrentSection;         //текущий раздел
+        private Test CurrentTest;         //текущий раздел
         private bool IsTestActive;              //есть ли активный тест сейчас
         //добавить аналогичное дробление раздела на карты?
 
@@ -31,12 +32,14 @@ namespace HistProjTemplate
         {
             InitializeComponent();
             Sections = new List<Sect>();
+            
             //TO DO: Выгрузка разделов - через сериализацию
             //здесь заполняется Sections - сериализация из файла
-            
+
 
             //в этом регионе примеры для отображения пока не добавлена сериализация
             #region 
+            Tests = new List<Test>();
             string smap = "/HistProjTemplate;component/Images/ExampleImage.png";
             List<string> answers1 = new List<string>
             {
@@ -63,16 +66,16 @@ namespace HistProjTemplate
                 qa1, qa2
             };
 
-            Sect s1 = new Sect("first", smap, lqa);
-            Sect s2 = new Sect("second", smap, lqa);
-            Sect s3 = new Sect("third", smap, lqa);
-            Sect s4 = new Sect("fourth", smap, lqa);
-            Sect s5 = new Sect("fifth", smap, lqa);
-            Sections.Add(s1);
-            Sections.Add(s2);
-            Sections.Add(s3);
-            Sections.Add(s4);
-            Sections.Add(s5);
+            Test s1 = new Test("first", smap, lqa);
+            Test s2 = new Test("second", smap, lqa);
+            Test s3 = new Test("third", smap, lqa);
+            Test s4 = new Test("fourth", smap, lqa);
+            Test s5 = new Test("fifth", smap, lqa);
+            Tests.Add(s1);
+            Tests.Add(s2);
+            Tests.Add(s3);
+            Tests.Add(s4);
+            Tests.Add(s5);
             #endregion
         }
 
@@ -86,10 +89,15 @@ namespace HistProjTemplate
 
             //Выгрузка всех разделов в листбокс для выбора раздела (переделать?)
             SectionList.Items.Clear();
-            foreach (Sect s in Sections)
+            //foreach (Sect s in Sections)
+            //{
+            //    SectionList.Items.Add(s.Name);
+            //}
+            foreach (Test t in Tests)
             {
-                SectionList.Items.Add(s.Name);
+                SectionList.Items.Add(t.Name);
             }
+
             //Показать меню выбора раздела - сваять красивее
             SectionList.Visibility = Visibility.Visible;
             ListBoxChoice.Visibility = Visibility.Visible;
@@ -114,7 +122,7 @@ namespace HistProjTemplate
         }
         private void ConfirmAnswer_Click(object sender, RoutedEventArgs e)  //кнопка подтверждения ответа при активном тесте
         {
-            if (CurrentSection == null || CurrentStatistic == null)
+            if (CurrentTest == null || CurrentStatistic == null)
             {
                 MessageBox.Show("Произошла ошибка");
                 //ошибка
@@ -122,13 +130,13 @@ namespace HistProjTemplate
             //Проверка правильности ответа
             //Если правильный, записать в статистику (+1)
             string sAnswer = AnswerBlock.Text;
-            if (CurrentSection.AllQuestionsAnswers[CurrentStatistic.Counter].answer.CheckAnswer(sAnswer) == true)
+            if (CurrentTest.AllQuestionsAnswers[CurrentStatistic.Counter].answer.CheckAnswer(sAnswer) == true)
             {
                 CurrentStatistic.CorrectAnswers++;
             }
             CurrentStatistic.Counter++;
 
-            if (CurrentStatistic.Counter >= CurrentSection.AllQuestionsAnswers.Count)
+            if (CurrentStatistic.Counter >= CurrentTest.AllQuestionsAnswers.Count)
             {
                 //Промежуточный показ результатов
                 MessageBox.Show($"Тест завершен! Вы дали {CurrentStatistic.CorrectAnswers} правильных ответов из {CurrentStatistic.Counter}");
@@ -146,7 +154,7 @@ namespace HistProjTemplate
             }
             else //если есть следующий вопрос, перейти к нему.
             {
-                ShowQuestionByNumberFromSection(CurrentSection, CurrentStatistic.Counter);
+                ShowQuestionByNumberFromSection(CurrentTest, CurrentStatistic.Counter);
             }
         }
         private void Settings(object sender, RoutedEventArgs e)
@@ -174,12 +182,12 @@ namespace HistProjTemplate
                 QuestionBlock.Visibility = Visibility.Visible;
                 ConfirmAnswerButton.Visibility = Visibility.Visible;
 
-                CurrentSection = GetSectionFromListByName(Sections, SectionList.SelectedItem.ToString());            //выбранный раздел
-                CurrentStatistic = new Statistics(CurrentSection.AllQuestionsAnswers.Count);                         //текущая статистика
-                MapImage.Source = new BitmapImage(new Uri(CurrentSection.Source, UriKind.RelativeOrAbsolute));       //текущая карта
-                if (CurrentSection.AllQuestionsAnswers.Count > 0)
+                CurrentTest = GetTestFromListByName(Tests, SectionList.SelectedItem.ToString());            //выбранный тест
+                CurrentStatistic = new Statistics(CurrentTest.AllQuestionsAnswers.Count);                   //текущая статистика
+                MapImage.Source = new BitmapImage(new Uri(CurrentTest.Source, UriKind.RelativeOrAbsolute)); //текущая карта
+                if (CurrentTest.AllQuestionsAnswers.Count > 0)
                 {
-                    ShowQuestionByNumberFromSection(CurrentSection, 0);
+                    ShowQuestionByNumberFromSection(CurrentTest, 0);
                 }
                 else
                 {
@@ -187,24 +195,24 @@ namespace HistProjTemplate
                 }
             }
         }
-        private Sect GetSectionFromListByName(List<Sect> ls, string s)    //возвращает раздел по его названию
+        private Test GetTestFromListByName(List<Test> ls, string s)    //возвращает тест по его названию
         {
-            foreach (Sect sec in ls)
+            foreach (Test test in ls)
             {
-                if (sec.Name == s)
+                if (test.Name == s)
                 {
-                    return sec;
+                    return test;
                 }
             }
             return null;
         }
 
-        private void ShowQuestionByNumberFromSection(Sect sec, int n)    //показать вопрос по индексу в листе
+        private void ShowQuestionByNumberFromSection(Test test, int n)    //показать вопрос по индексу в листе
         {
             AnswerBlock.Text = "";
-            if (n < sec.AllQuestionsAnswers.Count)
+            if (n < test.AllQuestionsAnswers.Count)
             {
-                Question q = sec.AllQuestionsAnswers[n].question;
+                Question q = test.AllQuestionsAnswers[n].question;
                 QuestionBlock.Text = q.QuestionP;
             }
         }

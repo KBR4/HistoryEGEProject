@@ -16,6 +16,11 @@ namespace HistLib
             Name = s;
             Tests = new List<Test>();
         }
+        public Sect(string s, List<Test> lt)//конструктор для создания раздела по названию и листу тестов - для десериализованного варианта
+        {
+            Name = s;
+            Tests = lt;
+        }
         public void AddTest(Test t)         //функция добавления теста в раздел (возможно не нужна)
         {
             Tests.Add(t);
