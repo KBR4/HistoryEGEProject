@@ -218,9 +218,7 @@ namespace HistProjTemplate
             {
                 SectionList.Items.Add(s.ToString());
             }
-
-        }
-        
+        }    
         private void ChooseSelectionSect(object sender, SelectionChangedEventArgs e)    //Выбор раздела - работает при клике на айтем левого листбокса
         {
             CurSection = null;

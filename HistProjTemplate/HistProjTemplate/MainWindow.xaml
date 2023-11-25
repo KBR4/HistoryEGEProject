@@ -17,8 +17,9 @@
             <MenuItem Header="Настройки" Click="Settings"></MenuItem>
             <MenuItem Header="Выйти" Click ="Exit"/>
         </Menu>
-        <WrapPanel x:Name="MainCanvas" Orientation="Vertical" VerticalAlignment="Stretch">
+        <TextBlock x:Name="TextBlockInfo" DockPanel.Dock="Top" FontFamily="Arial" FontSize="25" HorizontalAlignment="Center" Padding="10"> </TextBlock>
+        <Grid x:Name="MainGrid">
             
-        </WrapPanel>
+        </Grid>
     </DockPanel>
 </Window>

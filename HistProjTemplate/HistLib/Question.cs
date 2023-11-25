@@ -31,5 +31,9 @@ namespace HistLib
         {
             QuestionP = s;
         }
+        public override string ToString()
+        {
+            return question;
+        }
     }
 }
