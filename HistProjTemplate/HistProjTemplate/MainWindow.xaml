@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
-        Title="ЕГЭ по истории" Height="800" Width="800">
+        Title="ЕГЭ по истории" Height="800" Width="800" WindowState="Maximized">
 
-    <StackPanel>
-        <Menu FontSize="16" FontFamily="Verdana" Padding="20">
-            <MenuItem Header="Тест" Click="OpenSectionMenu"></MenuItem>
+    <DockPanel>
+        <Menu FontSize="16" FontFamily="Verdana" Padding="20" DockPanel.Dock="Top">
+            <MenuItem Header="Выбрать тест" Click="OpenSelectionWindow"></MenuItem>
             <MenuItem Header="Добавить" Click="MenuItem_Click">
                 <MenuItem Header="Раздел" Click="AddSection_Click"></MenuItem>
                 <MenuItem Header="Карту" Click="AddMap_Click" ></MenuItem>
@@ -17,15 +17,8 @@
             <MenuItem Header="Настройки" Click="Settings"></MenuItem>
             <MenuItem Header="Выйти" Click ="Exit"/>
         </Menu>
-        <Canvas x:Name="MainCanvas" Height="709">
-            <ListBox x:Name="SectionList" HorizontalAlignment="Left" VerticalAlignment="Top" Width="466" Height="689" FontSize="20"  Canvas.Top="10" Canvas.Left="10" Visibility="Hidden">
-                <!-- Add your menu items here -->
-            </ListBox>
-            <Button x:Name="ListBoxChoice" Content="OK" Height="113" Click="ListBoxChoice_Click" Canvas.Left="547" Canvas.Top="563" Width="187" Visibility="Hidden"/>
-            <Image x:Name="MapImage" Height="709" Width="380" Visibility="Hidden" ></Image>
-            <TextBlock x:Name="QuestionBlock" Height="334" Width="397" Canvas.Left="385" Canvas.Top="10" FontSize="15"  TextWrapping="Wrap" Visibility="Hidden"></TextBlock>
-            <TextBox x:Name="AnswerBlock" Height="84" Width="392" Canvas.Left="385" Canvas.Top="445" Visibility="Hidden"></TextBox>
-            <Button x:Name="ConfirmAnswerButton" Click="ConfirmAnswer_Click" Content="Ответить" Canvas.Left="528" Canvas.Top="604" Width="230" Height="72" Visibility="Hidden"/>
-        </Canvas>
-    </StackPanel>
+        <WrapPanel x:Name="MainCanvas" Orientation="Vertical" VerticalAlignment="Stretch">
+            
+        </WrapPanel>
+    </DockPanel>
 </Window>

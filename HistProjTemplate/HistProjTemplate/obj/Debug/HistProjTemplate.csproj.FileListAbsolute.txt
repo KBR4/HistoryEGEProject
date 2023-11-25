@@ -16,3 +16,5 @@ C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplat
 C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistLib.dll
 C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistLib.pdb
 C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.csproj.CopyComplete
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\ChooseTestWindow.g.cs
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\ChooseTestWindow.baml
