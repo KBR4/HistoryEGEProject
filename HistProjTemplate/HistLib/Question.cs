@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HistLib
 {
+    [Serializable]
     public class Question               //вопрос = строка. проверка на слишком длинный вопрос
     {
         private string question;

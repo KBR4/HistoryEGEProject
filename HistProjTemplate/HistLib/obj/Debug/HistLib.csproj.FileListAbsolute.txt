@@ -4,3 +4,9 @@ C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistLib\obj\Deb
 C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistLib\obj\Debug\HistLib.csproj.CoreCompileInputs.cache
 C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistLib\obj\Debug\HistLib.dll
 C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistLib\obj\Debug\HistLib.pdb
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistLib\bin\Debug\HistLib.dll
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistLib\bin\Debug\HistLib.pdb
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistLib\obj\Debug\HistLib.csproj.AssemblyReference.cache
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistLib\obj\Debug\HistLib.csproj.CoreCompileInputs.cache
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistLib\obj\Debug\HistLib.dll
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistLib\obj\Debug\HistLib.pdb

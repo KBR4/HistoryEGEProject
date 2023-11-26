@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HistLib
 {
+    [Serializable]
     public class QuestionAnswer //отвечает за вопрос - ответ на экране, чтобы не путаться с тем, какому вопросу какой ответ соотвтетсвует.
     {
         public Question question { get; set; }

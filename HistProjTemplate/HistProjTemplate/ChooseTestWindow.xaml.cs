@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HistLib;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace HistProjTemplate
 {
@@ -154,65 +156,93 @@ namespace HistProjTemplate
             //ЗДЕСЬ ДОЛЖНА ПРОИЗВОДИТЬСЯ ПОДГРУЗКА РАЗДЕЛОВ И ТЕСТОВ 
             //МОЖНО УБРАТЬ В ОТДЕЛЬНУЮ ФУНКЦИЮ ЧТОБЫ НЕ ЗАПЫЛЯТЬ
 
-            
+
             //Пример подгрузки. Для реализации смотреть сюда
             #region 
+            // оставлю пример подгрузки (тут же сериализация разделов из примера)
+            // (тут слегка мусорно и все закомменчено, но пока что не надо трогать)
+            #region
+            //Sections = new List<Sect>();
+            //Tests = new List<Test>();
+
+            //string smap = "/HistProjTemplate;component/Images/ExampleImage.png";
+            //List<string> answers1 = new List<string>
+            //{
+            //    "Германия", "Италия"
+            //};
+            //Answer ans1 = new Answer(answers1);
+
+            //List<string> answers2 = new List<string>
+            //{
+            //    "СССР", "Аргентина"
+            //};
+            //Answer ans2 = new Answer(answers2);
+
+            //string squest1 = "1Укажите название страны, с которой СССР вёл войну, события которой показаны на схеме.";
+            //Question q1 = new Question(squest1);
+
+            //string squest2 = "2Укажите название страны, с которой Германия вела войну, события которой показаны на схеме.";
+            //Question q2 = new Question(squest2);
+
+            //QuestionAnswer qa1 = new QuestionAnswer(q1, ans1);
+            //QuestionAnswer qa2 = new QuestionAnswer(q2, ans2);
+            //List<QuestionAnswer> lqa = new List<QuestionAnswer>
+            //{
+            //    qa1, qa2
+            //};
+
+            //Test s1 = new Test("first", smap, lqa);
+            //Test s2 = new Test("second", smap, lqa);
+            //Test s3 = new Test("third", smap, lqa);
+            //Test s4 = new Test("fourth", smap, lqa);
+            //Test s5 = new Test("fifth", smap, lqa);
+            //Tests.Add(s1);
+            //Tests.Add(s2);
+            //Tests.Add(s3);
+            //Tests.Add(s4);
+            //Tests.Add(s5);
+
+            //List<Test> Tests2 = new List<Test>();
+            //Test qq1 = new Test("FIRST", smap, lqa);
+            //Test qq2 = new Test("SECOND", smap, lqa);
+            //Test qq3 = new Test("THIRD", smap, lqa);
+            //Test qq4 = new Test("FOURTH", smap, lqa);
+            //Test qq5 = new Test("FIFTH", smap, lqa);
+            //Tests2.Add(qq1);
+            //Tests2.Add(qq2);
+            //Tests2.Add(qq3);
+            //Tests2.Add(qq4);
+            //Tests2.Add(qq5);
+
+            //Sect sect1 = new Sect("Вторая мировая война", Tests);
+            //Sect sect2 = new Sect("WORLD WAR II", Tests2);
+            //Sections.Add(sect1);
+            //Sections.Add(sect2);
+
+            // сериализуем разделы из примера
+            //List<Sect> sects = new List<Sect>();
+            //sects.Add(sect1);
+            //sects.Add(sect2);
+
+            //// получаем поток, куда будем записывать сериализованный объект
+            //using (FileStream fs = new FileStream("sections.dat", FileMode.OpenOrCreate))
+            //{
+            //    formatter.Serialize(fs, sects);
+
+            //    MessageBox.Show("Объект сериализован");
+            //}
+            #endregion
+            // подгрузка элементов (десериализация из файла people.dat)
+            // в дальнейшем во время запуска используем только десериализацию
+            BinaryFormatter formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
             Sections = new List<Sect>();
-            Tests = new List<Test>();
-
-            string smap = "/HistProjTemplate;component/Images/ExampleImage.png";
-            List<string> answers1 = new List<string>
+            using (FileStream fs = new FileStream("sections.dat", FileMode.OpenOrCreate))
             {
-                "Германия", "Италия"
-            };
-            Answer ans1 = new Answer(answers1);
+                Sections = (List<Sect>)formatter.Deserialize(fs);
+                MessageBox.Show($"Объект десериализован: {Sections[0].Name}");
+            }
 
-            List<string> answers2 = new List<string>
-            {
-                "СССР", "Аргентина"
-            };
-            Answer ans2 = new Answer(answers2);
 
-            string squest1 = "1Укажите название страны, с которой СССР вёл войну, события которой показаны на схеме.";
-            Question q1 = new Question(squest1);
-
-            string squest2 = "2Укажите название страны, с которой Германия вела войну, события которой показаны на схеме.";
-            Question q2 = new Question(squest2);
-
-            QuestionAnswer qa1 = new QuestionAnswer(q1, ans1);
-            QuestionAnswer qa2 = new QuestionAnswer(q2, ans2);
-            List<QuestionAnswer> lqa = new List<QuestionAnswer>
-            {
-                qa1, qa2
-            };
-
-            Test s1 = new Test("first", smap, lqa);
-            Test s2 = new Test("second", smap, lqa);
-            Test s3 = new Test("third", smap, lqa);
-            Test s4 = new Test("fourth", smap, lqa);
-            Test s5 = new Test("fifth", smap, lqa);
-            Tests.Add(s1);
-            Tests.Add(s2);
-            Tests.Add(s3);
-            Tests.Add(s4);
-            Tests.Add(s5);
-
-            List<Test> Tests2 = new List<Test>();
-            Test qq1 = new Test("FIRST", smap, lqa);
-            Test qq2 = new Test("SECOND", smap, lqa);
-            Test qq3 = new Test("THIRD", smap, lqa);
-            Test qq4 = new Test("FOURTH", smap, lqa);
-            Test qq5 = new Test("FIFTH", smap, lqa);
-            Tests2.Add(qq1);
-            Tests2.Add(qq2);
-            Tests2.Add(qq3);
-            Tests2.Add(qq4);
-            Tests2.Add(qq5);
-
-            Sect sect1 = new Sect("Вторая мировая война", Tests);
-            Sect sect2 = new Sect("WORLD WAR II", Tests2);
-            Sections.Add(sect1);
-            Sections.Add(sect2);
             #endregion
             foreach (Sect s in Sections)
             {

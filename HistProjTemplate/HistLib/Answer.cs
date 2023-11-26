@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HistLib
 {
+    [Serializable]
     public class Answer : ICheck                         //ответ - хранит информацию о всех принимающихся ответах на вопрос
     {
         private List<string> AnswerOptions; //Подумать нужно ли иметь несколько вариантов ответа на вопрос или достаточно игнорировать регистр

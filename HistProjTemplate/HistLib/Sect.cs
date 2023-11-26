@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace HistLib
 {
     //Пока что оставляю все публичным. С грамотной инкапсуляцией разберемся при рефакторинге.
+    [Serializable]
     public class Sect   //Класс раздел. Каждому разделу соответствует лист тестов по нему. (возможно с разными картами)
     {
         public string Name { get; set; }    //название раздела

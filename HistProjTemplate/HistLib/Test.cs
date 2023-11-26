@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HistLib
 {
+    [Serializable]
     public class Test : IResults   //класс тест. каждому тесту соответствует карта (через сурс), и массив вопрос-ответ = тест
     {
         public string Name { get; set; }        //Название теста (тема)

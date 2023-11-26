@@ -18,3 +18,23 @@ C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplat
 C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.csproj.CopyComplete
 C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\ChooseTestWindow.g.cs
 C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\ChooseTestWindow.baml
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistProjTemplate.exe.config
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistProjTemplate.exe
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistProjTemplate.pdb
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistLib.dll
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistLib.pdb
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.csproj.AssemblyReference.cache
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\ChooseTestWindow.g.cs
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\MainWindow.g.cs
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\App.g.cs
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate_MarkupCompile.cache
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate_MarkupCompile.lref
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\ChooseTestWindow.baml
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\MainWindow.baml
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.g.resources
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.Properties.Resources.resources
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.csproj.GenerateResource.cache
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.csproj.CoreCompileInputs.cache
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.csproj.CopyComplete
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.exe
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.pdb
