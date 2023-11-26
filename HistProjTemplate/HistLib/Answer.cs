@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HistLib
 {
-    public class Answer                         //ответ - хранит информацию о всех принимающихся ответах на вопрос
+    public class Answer : ICheck                         //ответ - хранит информацию о всех принимающихся ответах на вопрос
     {
         private List<string> AnswerOptions; //Подумать нужно ли иметь несколько вариантов ответа на вопрос или достаточно игнорировать регистр
         public Answer(List<string> ls)      //Если возможных ответов несколько использовать этот конструктор
@@ -26,7 +26,8 @@ namespace HistLib
             AnswerOptions = new List<string>();
             AnswerOptions.Add(answer);
         }
-        public bool CheckAnswer(string s) //проверка ответа - это нужно убрать в интерфейс
+
+        public bool Check(string s)
         {
             if (AnswerOptions.Contains(s))
             {

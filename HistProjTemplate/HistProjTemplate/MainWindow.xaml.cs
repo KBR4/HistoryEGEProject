@@ -40,6 +40,9 @@ namespace HistProjTemplate
         public MainWindow()
         {
             InitializeComponent();
+
+            //Внутри региона программное добавление компонентов в окно
+            #region
             IsTestChosen = false;
             IsTestActive = false;
             TextBlockInfo.Text = "Для начала работы выберите тест в меню";
@@ -102,7 +105,7 @@ namespace HistProjTemplate
             Grid.SetColumn(QuestionAnswerPanel, 2);
             MainGrid.Children.Add(QuestionAnswerPanel);
             QuestionAnswerPanel.Visibility = Visibility.Hidden;
-
+            #endregion
         }      
         private void StartClick(object sender, RoutedEventArgs e)  //начать тест
         {
@@ -140,8 +143,16 @@ namespace HistProjTemplate
         {
             UserAnswers[CurQNumber] = AnswerBox.Text;
             //TO DO: спросить у юзера, точно ли мы хотим завершить тест?
-            //если да, то показать статистику - отдельный экран (?)
-            //функция проверки ответов
+            //если да, то показать статистику - отдельный экран
+            Statistics TestResult = CurrentTest.GetResults(UserAnswers);
+            MessageBox.Show("Вы ответили правильно на " + TestResult.CorrectAnswers + " вопросов из " + TestResult.TotalQuestions + " .");
+            //TO DO: красивый экран для показа статистики, верных и неверных ответов
+            //TO DO: вернуться к исходному состоянию выбора теста
+
+            //здесь временная заглушка для возврата к состоянию, нужно сделать нормально
+            MapImage.Visibility = Visibility.Hidden;
+            QuestionAnswerPanel.Visibility = Visibility.Hidden;
+            TextBlockInfo.Text = "Для начала работы выберите тест в меню";
         }
 
         private void PrevQClick(object sender, RoutedEventArgs e)
@@ -189,25 +200,26 @@ namespace HistProjTemplate
                 //TO DO: Здесь юзердиалог хотим ли мы прекратить тест
             }
         }
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        //Кнопки меню идущие дальше можно редактировать - вероятно какие-то из них не нужны
+        private void MenuItem_Click(object sender, RoutedEventArgs e)   
         {
 
         }
-        private void AddSection_Click(object sender, RoutedEventArgs e)
+        private void AddSection_Click(object sender, RoutedEventArgs e) //Добавление раздела
         {
             MessageBox.Show("EFEFE");
             //Добавить раздел - название
         }
-        private void AddMap_Click(object sender, RoutedEventArgs e)
+        private void AddMap_Click(object sender, RoutedEventArgs e) //Добавление теста
         {
             //Добавить карту в раздел - открыть меню выбора разделов
         }
-        private void Settings(object sender, RoutedEventArgs e)
+        private void Settings(object sender, RoutedEventArgs e) //А что сюда класть? Нам это надо?
         {
             //настройки. нужны?
         }
 
-        private void Exit(object sender, RoutedEventArgs e)
+        private void Exit(object sender, RoutedEventArgs e) //Нужна ли вообще эта кнопка?
         {
             if (IsTestActive)
             {

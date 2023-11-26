@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HistLib
 {
-    public class Test   //класс тест. каждому тесту соответствует карта (через сурс), и массив вопрос-ответ = тест
+    public class Test : IResults   //класс тест. каждому тесту соответствует карта (через сурс), и массив вопрос-ответ = тест
     {
         public string Name { get; set; }        //Название теста (тема)
         public string Source { get; set; }      //Источник для изображения
@@ -27,6 +27,21 @@ namespace HistLib
         public override string ToString()
         {
             return Name;
+        }
+
+        public Statistics GetResults(string[] UserAnswers)
+        {
+            Statistics TestStats = new Statistics(this.AllQuestionsAnswers.Count());
+            for (int i = 0; i<this.AllQuestionsAnswers.Count(); i++)
+            {
+                Answer CorrectAnswer = this.AllQuestionsAnswers[i].answer;
+                if (CorrectAnswer.Check(UserAnswers[i]))
+                {
+                    TestStats.CorrectAnswers++;
+                    TestStats.CorrectAnswerNumbers[i] = 1;
+                }
+            }
+            return TestStats;
         }
     }
 }
