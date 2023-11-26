@@ -25,9 +25,10 @@ namespace HistProjTemplate
         private Test CurrentTest;               //активный тест
         private bool IsTestActive;              //есть ли активный тест сейчас
         private bool IsTestChosen;              //выбран ли тест
-        private int CurQNumber;
-        private string[] UserAnswers;
+        private int CurQNumber;                 //текущий номер вопроса в тесте
+        private string[] UserAnswers;           //ответы юзера. Выбран массив из-за удобства обращения по индексу
 
+        //WPF компоненты текущего окна
         private Button StartTestButton;
         private Image MapImage;
         private TextBox AnswerBox;
@@ -120,6 +121,8 @@ namespace HistProjTemplate
         {
             MapImage.Visibility = Visibility.Visible;
             QuestionAnswerPanel.Visibility = Visibility.Visible;
+            string imgsource = t.Source;
+            MapImage.Source = new BitmapImage(new Uri(imgsource, UriKind.RelativeOrAbsolute));
             UserAnswers = new string[1000];    //никто же не будет создавать тест с более чем 1000 вопросов правда
             CurQNumber = 0;
             ShowQuestion(CurQNumber, t);                      
@@ -198,43 +201,6 @@ namespace HistProjTemplate
         private void AddMap_Click(object sender, RoutedEventArgs e)
         {
             //Добавить карту в раздел - открыть меню выбора разделов
-        }
-        private void ConfirmAnswer_Click(object sender, RoutedEventArgs e)  //кнопка подтверждения ответа при активном тесте
-        {
-            //if (CurrentTest == null || CurrentStatistic == null)
-            //{
-            //    MessageBox.Show("Произошла ошибка");
-            //    //ошибка
-            //}
-            ////Проверка правильности ответа
-            ////Если правильный, записать в статистику (+1)
-            //string sAnswer = AnswerBlock.Text;
-            //if (CurrentTest.AllQuestionsAnswers[CurrentStatistic.Counter].answer.CheckAnswer(sAnswer) == true)
-            //{
-            //    CurrentStatistic.CorrectAnswers++;
-            //}
-            //CurrentStatistic.Counter++;
-
-            //if (CurrentStatistic.Counter >= CurrentTest.AllQuestionsAnswers.Count)
-            //{
-            //    //Промежуточный показ результатов
-            //    MessageBox.Show($"Тест завершен! Вы дали {CurrentStatistic.CorrectAnswers} правильных ответов из {CurrentStatistic.Counter}");
-            //    //TO DO: отдельный экран с результатами.
-            //    //TO DO: меню с предложением выбрать следующий тест
-
-            //    //временная заглушка - возврат к состоянию открытия меню
-            //    SectionList.Visibility = Visibility.Visible;
-            //    ListBoxChoice.Visibility = Visibility.Visible;
-
-            //    MapImage.Visibility = Visibility.Hidden;
-            //    AnswerBlock.Visibility = Visibility.Hidden;
-            //    QuestionBlock.Visibility = Visibility.Hidden;
-            //    ConfirmAnswerButton.Visibility = Visibility.Hidden;
-            //}
-            //else //если есть следующий вопрос, перейти к нему.
-            //{
-            //    ShowQuestionByNumberFromSection(CurrentTest, CurrentStatistic.Counter);
-            //}
         }
         private void Settings(object sender, RoutedEventArgs e)
         {
