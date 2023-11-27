@@ -38,3 +38,5 @@ C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\Hist
 C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.csproj.CopyComplete
 C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.exe
 C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.pdb
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\CreateSectWindow.g.cs
+C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\CreateSectWindow.baml

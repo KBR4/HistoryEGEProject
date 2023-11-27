@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HistLib;
+using Microsoft.Win32;
 
 namespace HistProjTemplate
 {
@@ -207,8 +211,38 @@ namespace HistProjTemplate
         }
         private void AddSection_Click(object sender, RoutedEventArgs e) //Добавление раздела
         {
-            MessageBox.Show("EFEFE");
+            CreateSectWindow createSect = new CreateSectWindow();
+            if (createSect.ShowDialog() == true)
+            {
+                IsTestChosen = true;
+                StartTestButton.Visibility = Visibility.Visible;
+                TextBlockInfo.Text = "Вы выбрали тест " + CurrentTest.Name + ". Нажмите 'Начать тест' для прохождения работы.";
+            }
             //Добавить раздел - название
+            // пробуем загрузить изображение из вне
+            #region
+            BitmapImage bitmap = new BitmapImage();
+            OpenFileDialog dialog = new OpenFileDialog();
+            MapImage.Stretch = Stretch.Fill;
+            dialog.Title = "Выберите изображение";
+
+            //фильтр для того, чтобы выбирать только из фото
+            dialog.Filter =
+        "Image files|*.bmp;*.jpg;*.gif;*.png;*.tif|All files|*.*";
+            dialog.FilterIndex = 1;
+
+            if (dialog.ShowDialog() == true)
+            {
+                bitmap.UriSource = new Uri(dialog.FileName);
+                string pathToImages = Assembly.GetExecutingAssembly().Location;
+
+                //задание абсолютного пути до папки с ресурсами Images 
+                pathToImages = pathToImages.Remove(pathToImages.Length - 30);
+                pathToImages += "Images";
+                MessageBox.Show($"File name: {dialog.FileName} \nYour path: \n{pathToImages}");
+                File.Copy(dialog.FileName, System.IO.Path.Combine(pathToImages, dialog.SafeFileName));
+            }
+            #endregion
         }
         private void AddMap_Click(object sender, RoutedEventArgs e) //Добавление теста
         {
