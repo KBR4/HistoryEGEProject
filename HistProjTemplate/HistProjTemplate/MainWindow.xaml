@@ -8,7 +8,7 @@
         Title="ЕГЭ по истории" Height="800" Width="800" WindowState="Maximized">
 
     <DockPanel>
-        <Menu FontSize="16" FontFamily="Verdana" Padding="20" DockPanel.Dock="Top">
+        <Menu Background="AliceBlue" FontSize="16" FontFamily="Verdana" Padding="20" DockPanel.Dock="Top">
             <MenuItem Header="Выбрать тест" Click="OpenSelectionWindow"></MenuItem>
             <MenuItem Header="Добавить" Click="MenuItem_Click">
                 <MenuItem Header="Раздел" Click="AddSection_Click"></MenuItem>

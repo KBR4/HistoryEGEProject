@@ -152,11 +152,6 @@ namespace HistProjTemplate
             PrevDock.Children.Add(ConfirmButton);
             #endregion
 
-            //TO DO:
-            //ЗДЕСЬ ДОЛЖНА ПРОИЗВОДИТЬСЯ ПОДГРУЗКА РАЗДЕЛОВ И ТЕСТОВ 
-            //МОЖНО УБРАТЬ В ОТДЕЛЬНУЮ ФУНКЦИЮ ЧТОБЫ НЕ ЗАПЫЛЯТЬ
-
-
             //Пример подгрузки. Для реализации смотреть сюда
             #region 
             // оставлю пример подгрузки (тут же сериализация разделов из примера)
@@ -241,8 +236,6 @@ namespace HistProjTemplate
                 Sections = (List<Sect>)formatter.Deserialize(fs);
                 MessageBox.Show($"Объект десериализован: {Sections[0].Name}");
             }
-
-
             #endregion
             foreach (Sect s in Sections)
             {

@@ -27,6 +27,10 @@ namespace HistLib
             AnswerOptions = new List<string>();
             AnswerOptions.Add(answer);
         }
+        public string GetAnswer()
+        {
+            return AnswerOptions[0];
+        }
 
         public bool Check(string s)
         {

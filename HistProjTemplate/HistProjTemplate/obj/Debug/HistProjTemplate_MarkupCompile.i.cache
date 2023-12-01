@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\
 HistProjTemplate
 none
 false
 DEBUG;TRACE
-C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\App.xaml
-3-2016222139
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\App.xaml
+51809579038
 
-81498906475
-14689906823
-ChooseTestWindow.xaml;CreateSectWindow.xaml;MainWindow.xaml;
+101213938245
+14418160330
+ChooseTestWindow.xaml;ConfirmWindow.xaml;CreateSectWindow.xaml;MainWindow.xaml;ResultsScreen.xaml;
 
 True
 

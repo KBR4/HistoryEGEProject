@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using HistLib;
 using Microsoft.Win32;
 
@@ -23,15 +24,27 @@ namespace HistProjTemplate
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
+    //TO DO: если хочется чем-то заняться, выбирать отсюда
+    //Бэкграунд - предпочтительно желтый/коричневый
+    //Цвет кнопок - контрастные?
+    //Отступы между элементами
+    //Рамочка вокруг карты
+    //Аналогичные цвета на экранах подтверждения и экране статистики
+    //Соединить экраны выбора и экраны добавления в один или утвердить их логику работы
+    //Если оставляем текущий вариант работы, то заставить работать кнопки на основном экране
+    //Настройки - придумать нужны ли они. Если нужны, то? размер экрана, цвет изображения, тема?
+    //Экран результатов
     public partial class MainWindow : Window
     {
-        private Statistics CurrentStatistic;    //статистика для текущего теста
         private Test CurrentTest;               //активный тест
         private bool IsTestActive;              //есть ли активный тест сейчас
         private bool IsTestChosen;              //выбран ли тест
         private int CurQNumber;                 //текущий номер вопроса в тесте
         private string[] UserAnswers;           //ответы юзера. Выбран массив из-за удобства обращения по индексу
-
+        private DispatcherTimer timer;          //таймер
+        int TestTime;                           //время выполнения текущего теста
         //WPF компоненты текущего окна
         private Button StartTestButton;
         private Image MapImage;
@@ -58,6 +71,7 @@ namespace HistProjTemplate
             MapColumn.Width = new GridLength(1.0, GridUnitType.Star);
             ButtonColumn.Width = new GridLength(0.15, GridUnitType.Star);
             QuestionColumn.Width = new GridLength(1.0, GridUnitType.Star);
+            
             
             MainGrid.RowDefinitions.Add(Row);
             MainGrid.ColumnDefinitions.Add(MapColumn);
@@ -101,6 +115,8 @@ namespace HistProjTemplate
 
             QuestionAnswerPanel.Children.Add(QuestionBlock);
             QuestionAnswerPanel.Children.Add(AnswerBox);
+
+
             QuestionAnswerPanel.Children.Add(NextQButton);
             QuestionAnswerPanel.Children.Add(PrevQButton);
             QuestionAnswerPanel.Children.Add(EndTestButton);
@@ -109,12 +125,23 @@ namespace HistProjTemplate
             Grid.SetColumn(QuestionAnswerPanel, 2);
             MainGrid.Children.Add(QuestionAnswerPanel);
             QuestionAnswerPanel.Visibility = Visibility.Hidden;
+
+            //Графическое оформление - свойства
+            TextBlockInfo.Margin = new Thickness(15, 15, 15, 15);
+            MainGrid.Margin = new Thickness(15, 15, 15, 15);
+            TextBlockInfo.Background = new SolidColorBrush(Colors.AliceBlue);
+
+            //ImageBrush bgbrush = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/LightBrownBackground.jpg")));
+            //this.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/HistProjTemplate;component/Images/LightBrownBackground.jpg")));
+
+
+
             #endregion
-        }      
-        private void StartClick(object sender, RoutedEventArgs e)  //начать тест
+        }
+        private void StartClick(object sender, RoutedEventArgs e)  //Кнопка начала теста
         {
-            StartTestButton.Visibility = Visibility.Hidden;
-            if (IsTestChosen && CurrentTest != null)
+            StartTestButton.Visibility = Visibility.Hidden; //Кнопка больше не нужна после нажатия (скрыть)
+            if (IsTestChosen && CurrentTest != null)    //Проверка был ли выбран тест.
             {
                 StartTest(CurrentTest);
             }
@@ -124,18 +151,45 @@ namespace HistProjTemplate
             }
         }
 
-        private void StartTest(Test t)
+        private void StartTest(Test t)  //Начать заданный тест
         {
+            //Картинка и панель вопроса - ответа становятся видимыми
             MapImage.Visibility = Visibility.Visible;
             QuestionAnswerPanel.Visibility = Visibility.Visible;
+
+            //Картинка
             string imgsource = t.Source;
             MapImage.Source = new BitmapImage(new Uri(imgsource, UriKind.RelativeOrAbsolute));
-            UserAnswers = new string[1000];    //никто же не будет создавать тест с более чем 1000 вопросов правда
+
+            //Массив с ответами
+            UserAnswers = new string[10000];    //никто же не будет создавать тест с более чем 10000 вопросов правда
+
+            //Текущий вопрос (начинаем с первого, т.е. с 0)
             CurQNumber = 0;
+
+            //Тест становится активным
+            IsTestActive = true;
+
+            //Панель информации показывает общее задание для подобного вида тестов
+            TextBlockInfo.Text = "Рассмотрите схему и выполните задания";
+
+            //Таймер
+            TestTime = 0;
+            timer = new DispatcherTimer();
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Start();
+
+            //Показываем первый вопрос
             ShowQuestion(CurQNumber, t);                      
         }
 
-        private void ShowQuestion(int n, Test t)
+        private void timer_Tick(object sender, EventArgs e) //Таймер
+        {
+            TestTime++;
+        }
+
+        private void ShowQuestion(int n, Test t)    //Показать вопрос n теста t
         {
             if (n>=0 && n <= t.AllQuestionsAnswers.Count)
             {
@@ -146,20 +200,28 @@ namespace HistProjTemplate
         private void EndTestClick(object sender, RoutedEventArgs e)
         {
             UserAnswers[CurQNumber] = AnswerBox.Text;
-            //TO DO: спросить у юзера, точно ли мы хотим завершить тест?
-            //если да, то показать статистику - отдельный экран
-            Statistics TestResult = CurrentTest.GetResults(UserAnswers);
-            MessageBox.Show("Вы ответили правильно на " + TestResult.CorrectAnswers + " вопросов из " + TestResult.TotalQuestions + " .");
-            //TO DO: красивый экран для показа статистики, верных и неверных ответов
-            //TO DO: вернуться к исходному состоянию выбора теста
+            ConfirmWindow cw = new ConfirmWindow("Вы уверены, что хотите завершить тест?");
+            if (cw.ShowDialog() == true)
+            {
+                timer.Stop();
+                Statistics TestResult = CurrentTest.GetResults(UserAnswers); //Проверка ответов
+                
+                ResultsScreen rs = new ResultsScreen(CurrentTest, TestResult, UserAnswers, TestTime); //Окно отображения результатов
+                if (rs.ShowDialog() == true)
+                {
 
-            //здесь временная заглушка для возврата к состоянию, нужно сделать нормально
-            MapImage.Visibility = Visibility.Hidden;
-            QuestionAnswerPanel.Visibility = Visibility.Hidden;
-            TextBlockInfo.Text = "Для начала работы выберите тест в меню";
+                }
+                MessageBox.Show("Вы ответили правильно на " + TestResult.CorrectAnswers + " вопросов из " + TestResult.TotalQuestions + " .");
+
+                //Возврат к исходному состоянию приложения
+                MapImage.Visibility = Visibility.Hidden;
+                QuestionAnswerPanel.Visibility = Visibility.Hidden;
+                IsTestActive = false;
+                TextBlockInfo.Text = "Для начала работы выберите тест в меню";
+            }           
         }
 
-        private void PrevQClick(object sender, RoutedEventArgs e)
+        private void PrevQClick(object sender, RoutedEventArgs e) //Вернуться к предыдущему вопросу
         {
             UserAnswers[CurQNumber] = AnswerBox.Text;
             if (CurQNumber-1>=0)
@@ -244,24 +306,32 @@ namespace HistProjTemplate
             }
             #endregion
         }
-        private void AddMap_Click(object sender, RoutedEventArgs e) //Добавление теста
+        private void AddMap_Click(object sender, RoutedEventArgs e) //Добавление тест
         {
             //Добавить карту в раздел - открыть меню выбора разделов
         }
-        private void Settings(object sender, RoutedEventArgs e) //А что сюда класть? Нам это надо?
+        private void Settings(object sender, RoutedEventArgs e) //???
         {
-            //настройки. нужны?
+            
         }
 
-        private void Exit(object sender, RoutedEventArgs e) //Нужна ли вообще эта кнопка?
+        private void Exit(object sender, RoutedEventArgs e)
         {
             if (IsTestActive)
             {
-                //TO DO: если тест активен спросить юзера хочет ли он выйти
+                ConfirmWindow cw = new ConfirmWindow("Вы не завершили текущий тест.Вы уверены, что хотите выйти?");
+                if (cw.ShowDialog() == true)
+                {
+                    this.Close();
+                }
             }
             else
             {
-                this.Close();
+                ConfirmWindow cw = new ConfirmWindow("Вы уверены, что хотите выйти?");
+                if (cw.ShowDialog() == true)
+                {
+                    this.Close();
+                }
             }
         }
     }   

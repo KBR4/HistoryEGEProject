@@ -24,7 +24,16 @@ namespace HistLib
         public Test(String name, string source, List<QuestionAnswer> QA)    //Создание темы по названию, изображению, массиву вопросов-ответов
         {
             Name = name;
-            Source = source;            //TO DO: проверка подгрузки картинки - CheckUploadImage()
+
+            //Проверка существование картинки по источнику (пути)
+            if (CheckUploadImage(source))
+            {
+                Source = source;
+            }
+            else
+            {
+                source = null; //TO DO: добавить пустую картинку чтобы здесь не было пусто
+            }
             AllQuestionsAnswers = QA;
         }
         public override string ToString()
@@ -32,11 +41,14 @@ namespace HistLib
             return Name;
         }
 
+        //TO DO: либо исправить исходную функцию, либо перенести куда-нибудь эти
+        //Это вспомогательные функции, поэтому они не должны лежать в данном классе (мне так кажется)
+        //Встроить логику в оригинальный код (я вроде сделал, проверь Егор)
         public static bool CheckUploadImage(string source)
         {
             if (!File.Exists(source) && CheckImageExpansion(source))
             {
-                Console.WriteLine("Ты Молодец!!!");
+                Console.WriteLine("Файл найден");
                 return true;
             }
             else
@@ -76,6 +88,7 @@ namespace HistLib
             }
         }
 
+        //Функция проверки теста - единственная работа класса Test
         public Statistics GetResults(string[] UserAnswers)
         {
             Statistics TestStats = new Statistics(this.AllQuestionsAnswers.Count());
