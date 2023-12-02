@@ -110,6 +110,7 @@ namespace HistProjTemplate
 
             QuestionBlock = new TextBlock();
             QuestionBlock.Margin = new Thickness(0, 15, 0, 15);
+            QuestionBlock.Padding = new Thickness(5, 5, 5, 5);
             QuestionBlock.Background = new SolidColorBrush(Colors.AliceBlue);
             QuestionBlock.FontSize = 20;
             QuestionBlock.TextAlignment = TextAlignment.Center;
@@ -247,9 +248,7 @@ namespace HistProjTemplate
                 if (rs.ShowDialog() == true)
                 {
 
-                }
-                MessageBox.Show("Вы ответили правильно на " + TestResult.CorrectAnswers + " вопросов из " + TestResult.TotalQuestions + " .");
-
+                }               
                 //Возврат к исходному состоянию приложения
                 MapImage.Visibility = Visibility.Hidden;
                 QuestionAnswerPanel.Visibility = Visibility.Hidden;
@@ -306,6 +305,9 @@ namespace HistProjTemplate
                 if (cw.ShowDialog() == true)
                 {
                     IsTestActive = false;
+                    QuestionAnswerPanel.Visibility = Visibility.Hidden;
+                    MapImage.Visibility = Visibility.Hidden;
+
                     ChooseTestWindow CTW = new ChooseTestWindow();
                     if (CTW.ShowDialog() == true)
                     {

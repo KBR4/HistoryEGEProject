@@ -5,17 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
-        Title="Результаты теста" Height="450" Width="500" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
-    <DockPanel x:Name="ResPanel" Margin="15">
-        <ListView x:Name="ResList" DockPanel.Dock="Top">
+        Title="Результаты теста" Height="450" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="Height">
+    <DockPanel x:Name="ResPanel" Margin="15" Background="Beige">
+        <ListView x:Name="ResList" DockPanel.Dock="Top"  Margin="10, 10, 10, 10" FontSize="15" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id}"/>
                     <GridViewColumn Header="Ответ" DisplayMemberBinding="{Binding Ans}"/>
                     <GridViewColumn Header="Правильный ответ" DisplayMemberBinding="{Binding CorAns}"/>
+                    <GridViewColumn Header="Оценка" DisplayMemberBinding="{Binding Clr}"/>
                 </GridView>
             </ListView.View>
+            
+            <!-- Set the ItemContainerStyle to customize the ListViewItem -->
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <!-- Use a DataTrigger to set the background color based on a property value -->
+                        <DataTrigger Binding="{Binding Clr}" Value="Верно">
+                            <Setter Property="Background" Value="LightGreen" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Clr}" Value="Неверно">
+                            <Setter Property="Background" Value="LightCoral" />
+                        </DataTrigger>
+                        <!-- Add more DataTriggers as needed -->
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            
         </ListView>
-        <Button DockPanel.Dock="Bottom" Width="30" Height="40" Click="Button_Click"> OK </Button>
+        <TextBlock DockPanel.Dock="Top" x:Name="ResultBlock" FontSize="15" FontFamily="Arial" Margin="10, 10, 10, 10" TextWrapping="WrapWithOverflow"></TextBlock>
+        <Button Margin="0,0,0,10" Background="AliceBlue" Foreground="Green" DockPanel.Dock="Bottom" Width="100" Height="60" Click="Button_Click" FontSize="30" FontFamily="Arial"> Назад </Button>
     </DockPanel>
 </Window>
