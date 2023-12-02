@@ -28,14 +28,12 @@ namespace HistProjTemplate
 
     //TO DO: если хочется чем-то заняться, выбирать отсюда
     //Бэкграунд - предпочтительно желтый/коричневый
-    //Цвет кнопок - контрастные?
-    //Отступы между элементами
     //Рамочка вокруг карты
     //Аналогичные цвета на экранах подтверждения и экране статистики
     //Соединить экраны выбора и экраны добавления в один или утвердить их логику работы
     //Если оставляем текущий вариант работы, то заставить работать кнопки на основном экране
     //Настройки - придумать нужны ли они. Если нужны, то? размер экрана, цвет изображения, тема?
-    //Экран результатов
+    //Отцентровать кнопку выбора теста
     public partial class MainWindow : Window
     {
         private Test CurrentTest;               //активный тест
@@ -72,7 +70,6 @@ namespace HistProjTemplate
             ButtonColumn.Width = new GridLength(0.15, GridUnitType.Star);
             QuestionColumn.Width = new GridLength(1.0, GridUnitType.Star);
             
-            
             MainGrid.RowDefinitions.Add(Row);
             MainGrid.ColumnDefinitions.Add(MapColumn);
             MainGrid.ColumnDefinitions.Add(ButtonColumn);
@@ -85,6 +82,14 @@ namespace HistProjTemplate
             StartTestButton.Height = 75;
             StartTestButton.Width = 100;
             StartTestButton.Visibility = Visibility.Hidden;
+            StartTestButton.HorizontalAlignment = HorizontalAlignment.Right;
+            StartTestButton.VerticalAlignment = VerticalAlignment.Top;
+
+            StartTestButton.Background = new SolidColorBrush(Colors.LightBlue);
+            StartTestButton.FontSize = 15;
+            StartTestButton.FontFamily = new FontFamily("Arial");
+            StartTestButton.VerticalContentAlignment = VerticalAlignment.Center;
+
             StartTestButton.Content = "Начать тест";
             StartTestButton.Click += StartClick;
             Grid.SetRow(StartTestButton, 0);
@@ -96,13 +101,29 @@ namespace HistProjTemplate
             Grid.SetColumn(MapImage, 0);
             MainGrid.Children.Add(MapImage);
             MapImage.Visibility = Visibility.Hidden;
+            MapImage.Margin = new Thickness(20, 10, 20, 20);
 
             QuestionAnswerPanel = new StackPanel();
             QuestionAnswerPanel.VerticalAlignment = VerticalAlignment.Center;
             QuestionAnswerPanel.HorizontalAlignment = HorizontalAlignment.Center;
             QuestionAnswerPanel.Orientation = Orientation.Vertical;
+
             QuestionBlock = new TextBlock();
+            QuestionBlock.Margin = new Thickness(0, 15, 0, 15);
+            QuestionBlock.Background = new SolidColorBrush(Colors.AliceBlue);
+            QuestionBlock.FontSize = 20;
+            QuestionBlock.TextAlignment = TextAlignment.Center;
+            QuestionBlock.TextWrapping = TextWrapping.Wrap;
+            
             AnswerBox = new TextBox();
+            AnswerBox.MaxLength = 30;   //Макс длина ответа
+            AnswerBox.FontFamily = new FontFamily("Arial");
+            AnswerBox.FontSize = 15;
+            AnswerBox.TextAlignment = TextAlignment.Center;
+            //AnswerBox.Width = 400;
+            //AnswerBox.Height = 25;
+            AnswerBox.Margin = new Thickness(0, 0, 0, 15);
+
             NextQButton = new Button();
             NextQButton.Content = "Следующий вопрос";  //>>
             NextQButton.Click += NextQClick;
@@ -115,11 +136,27 @@ namespace HistProjTemplate
 
             QuestionAnswerPanel.Children.Add(QuestionBlock);
             QuestionAnswerPanel.Children.Add(AnswerBox);
+            
+            //Панель для кнопок
+            StackPanel ButtonPanel = new StackPanel();
+            ButtonPanel.Orientation = Orientation.Horizontal;
+            QuestionAnswerPanel.Children.Add(ButtonPanel);
 
+            ButtonPanel.Children.Add(PrevQButton);
+            ButtonPanel.Children.Add(NextQButton);           
+            ButtonPanel.Children.Add(EndTestButton);
 
-            QuestionAnswerPanel.Children.Add(NextQButton);
-            QuestionAnswerPanel.Children.Add(PrevQButton);
-            QuestionAnswerPanel.Children.Add(EndTestButton);
+            ButtonPanel.Margin = new Thickness(20, 0, 20, 20);
+            NextQButton.Padding = new Thickness(5, 5, 5, 5);
+            PrevQButton.Padding = new Thickness(5, 5, 5, 5);
+            EndTestButton.Padding = new Thickness(5, 5, 5, 5);
+
+            NextQButton.Margin = new Thickness(30, 0, 30, 0);
+            PrevQButton.Margin = new Thickness(0, 0, 30, 0);
+            EndTestButton.Margin = new Thickness(30, 0, 30, 0);
+            //QuestionAnswerPanel.Children.Add(NextQButton);
+            //QuestionAnswerPanel.Children.Add(PrevQButton);
+            //QuestionAnswerPanel.Children.Add(EndTestButton);
 
             Grid.SetRow(QuestionAnswerPanel, 0);
             Grid.SetColumn(QuestionAnswerPanel, 2);
@@ -217,6 +254,7 @@ namespace HistProjTemplate
                 MapImage.Visibility = Visibility.Hidden;
                 QuestionAnswerPanel.Visibility = Visibility.Hidden;
                 IsTestActive = false;
+                IsTestChosen = false;
                 TextBlockInfo.Text = "Для начала работы выберите тест в меню";
             }           
         }
@@ -261,9 +299,22 @@ namespace HistProjTemplate
                     TextBlockInfo.Text = "Вы выбрали тест " + CurrentTest.Name + ". Нажмите 'Начать тест' для прохождения работы.";
                 }
             }
-            else
+            else //Если есть активный тест
             {
-                //TO DO: Здесь юзердиалог хотим ли мы прекратить тест
+                //TO DO: переделать код ниже
+                ConfirmWindow cw = new ConfirmWindow("Вы не завершили текущий тест.Вы уверены, что хотите выбрать другой?");
+                if (cw.ShowDialog() == true)
+                {
+                    IsTestActive = false;
+                    ChooseTestWindow CTW = new ChooseTestWindow();
+                    if (CTW.ShowDialog() == true)
+                    {
+                        CurrentTest = CTW.ChosenTest;
+                        IsTestChosen = true;
+                        StartTestButton.Visibility = Visibility.Visible;
+                        TextBlockInfo.Text = "Вы выбрали тест " + CurrentTest.Name + ". Нажмите 'Начать тест' для прохождения работы.";
+                    }
+                }
             }
         }
         //Кнопки меню идущие дальше можно редактировать - вероятно какие-то из них не нужны

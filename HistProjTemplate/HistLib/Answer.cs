@@ -34,9 +34,12 @@ namespace HistLib
 
         public bool Check(string s)
         {
-            if (AnswerOptions.Contains(s))
+            for (int i = 0; i<AnswerOptions.Count; i++)
             {
-                return true;
+                if (string.Equals(s, AnswerOptions[i], StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return true;
+                }
             }
             return false;
         }

@@ -64,8 +64,6 @@ namespace HistProjTemplate
             
             MainSelectionGrid.ShowGridLines = true;
 
-            
-
             //Верхний ряд = ряд названий
             TextBlock Title1 = new TextBlock();
             Title1.Text = "Раздел";
@@ -75,6 +73,7 @@ namespace HistProjTemplate
             Grid.SetRow(Title1, 0);
             Grid.SetColumn(Title1, 0);
             MainSelectionGrid.Children.Add(Title1);
+            //Title1.Padding = new Thickness(10, 20, 10, 10);
 
             TextBlock Title2 = new TextBlock();
             Title2.Text = "Тема";
@@ -84,6 +83,7 @@ namespace HistProjTemplate
             Grid.SetRow(Title2, 0);
             Grid.SetColumn(Title2, 1);
             MainSelectionGrid.Children.Add(Title2);
+            //Title2.Padding = new Thickness(10, 20, 10, 10);
 
             TextBlock Title3 = new TextBlock();
             Title3.Text = "Превью";
@@ -93,6 +93,7 @@ namespace HistProjTemplate
             Grid.SetRow(Title3, 0);
             Grid.SetColumn(Title3, 2);
             MainSelectionGrid.Children.Add(Title3);
+            //Title3.Padding = new Thickness(10, 20, 10, 10);
 
             //Нижний ряд - ряд выбора
 
@@ -100,6 +101,10 @@ namespace HistProjTemplate
             SectionList = new ListBox();
             SectionList.FontSize = 20;
             SectionList.FontFamily = new FontFamily("Arial");
+
+            //SectionList.HorizontalAlignment = HorizontalAlignment.Center;
+            //SectionList.VerticalAlignment = VerticalAlignment.Center;
+            //SectionList.HorizontalContentAlignment = HorizontalAlignment.Center;
 
             //SectionList.Items.Add("First");
             //SectionList.Items.Add("Second");
@@ -114,6 +119,10 @@ namespace HistProjTemplate
             TestList = new ListBox();
             TestList.FontSize = 18;
             TestList.FontFamily = new FontFamily("Arial");
+
+            //TestList.HorizontalAlignment = HorizontalAlignment.Center;
+            //TestList.VerticalAlignment = VerticalAlignment.Center;
+            //TestList.HorizontalContentAlignment = HorizontalAlignment.Center;
 
             //TestList.Items.Add("A");
             //TestList.Items.Add("B");
@@ -234,7 +243,7 @@ namespace HistProjTemplate
             using (FileStream fs = new FileStream("sections.dat", FileMode.OpenOrCreate))
             {
                 Sections = (List<Sect>)formatter.Deserialize(fs);
-                MessageBox.Show($"Объект десериализован: {Sections[0].Name}");
+                //MessageBox.Show($"Объект десериализован: {Sections[0].Name}");
             }
             #endregion
             foreach (Sect s in Sections)
