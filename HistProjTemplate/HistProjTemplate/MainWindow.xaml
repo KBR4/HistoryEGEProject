@@ -9,6 +9,7 @@
 
     <DockPanel>
         <Menu Background="AliceBlue" FontSize="16" FontFamily="Verdana" Padding="20" DockPanel.Dock="Top">
+            <MenuItem Header="Начать тест" Click="StartClick"></MenuItem>
             <MenuItem Header="Выбрать тест" Click="OpenSelectionWindow"></MenuItem>
             <MenuItem Header="Добавить" Click="MenuItem_Click">
                 <MenuItem Header="Раздел" Click="AddSection_Click"></MenuItem>

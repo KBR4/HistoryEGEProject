@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
         Title="Результаты теста" Height="450" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="Height">
-    <DockPanel x:Name="ResPanel" Margin="15" Background="Beige">
+    <DockPanel x:Name="ResPanel" Margin="15" Background="Ivory">
         <ListView x:Name="ResList" DockPanel.Dock="Top"  Margin="10, 10, 10, 10" FontSize="15" >
             <ListView.View>
                 <GridView>
@@ -14,6 +14,12 @@
                     <GridViewColumn Header="Ответ" DisplayMemberBinding="{Binding Ans}"/>
                     <GridViewColumn Header="Правильный ответ" DisplayMemberBinding="{Binding CorAns}"/>
                     <GridViewColumn Header="Оценка" DisplayMemberBinding="{Binding Clr}"/>
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="{x:Type GridViewColumnHeader}">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
+
                 </GridView>
             </ListView.View>
             
@@ -35,6 +41,6 @@
             
         </ListView>
         <TextBlock DockPanel.Dock="Top" x:Name="ResultBlock" FontSize="15" FontFamily="Arial" Margin="10, 10, 10, 10" TextWrapping="WrapWithOverflow"></TextBlock>
-        <Button Margin="0,0,0,10" Background="AliceBlue" Foreground="Green" DockPanel.Dock="Bottom" Width="100" Height="60" Click="Button_Click" FontSize="30" FontFamily="Arial"> Назад </Button>
+        <Button Margin="0,0,0,10" Background="AliceBlue" Foreground="Black" DockPanel.Dock="Bottom" Width="100" Height="60" Click="Button_Click" FontSize="30" FontFamily="Arial"> Назад </Button>
     </DockPanel>
 </Window>
