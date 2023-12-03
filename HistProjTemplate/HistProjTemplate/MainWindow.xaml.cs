@@ -228,6 +228,14 @@ namespace HistProjTemplate
 
             //Показываем первый вопрос
             PrevQButton.IsEnabled = false;
+            if (t.AllQuestionsAnswers.Count > 1)
+            {
+                NextQButton.IsEnabled = true;
+            }
+            else
+            {
+                NextQButton.IsEnabled = false;
+            }
             ShowQuestion(CurQNumber, t);                      
         }
         private void timer_Tick(object sender, EventArgs e) //Таймер
