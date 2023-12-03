@@ -227,6 +227,7 @@ namespace HistProjTemplate
             timer.Start();
 
             //Показываем первый вопрос
+            PrevQButton.IsEnabled = false;
             ShowQuestion(CurQNumber, t);                      
         }
         private void timer_Tick(object sender, EventArgs e) //Таймер
@@ -266,9 +267,14 @@ namespace HistProjTemplate
         private void PrevQClick(object sender, RoutedEventArgs e) //Вернуться к предыдущему вопросу
         {
             UserAnswers[CurQNumber] = AnswerBox.Text;
+            NextQButton.IsEnabled = true;
             if (CurQNumber-1>=0)
             {
                 CurQNumber--;
+                if (CurQNumber == 0)
+                {
+                    PrevQButton.IsEnabled = false;
+                }
                 ShowQuestion(CurQNumber, CurrentTest);
             }
             else
@@ -279,9 +285,14 @@ namespace HistProjTemplate
         private void NextQClick(object sender, RoutedEventArgs e)
         {
             UserAnswers[CurQNumber] = AnswerBox.Text;
+            PrevQButton.IsEnabled = true;
             if (CurQNumber + 1 <= CurrentTest.AllQuestionsAnswers.Count - 1)
             {
                 CurQNumber++;
+                if (CurQNumber == CurrentTest.AllQuestionsAnswers.Count - 1)
+                {
+                    NextQButton.IsEnabled = false;
+                }
                 ShowQuestion(CurQNumber, CurrentTest);
             }
             else

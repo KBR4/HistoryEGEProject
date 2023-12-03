@@ -41,6 +41,6 @@
             
         </ListView>
         <TextBlock DockPanel.Dock="Top" x:Name="ResultBlock" FontSize="15" FontFamily="Arial" Margin="10, 10, 10, 10" TextWrapping="WrapWithOverflow"></TextBlock>
-        <Button Margin="0,0,0,10" Background="AliceBlue" Foreground="Black" DockPanel.Dock="Bottom" Width="100" Height="60" Click="Button_Click" FontSize="30" FontFamily="Arial"> Назад </Button>
+        <Button Margin="0,0,0,10" Background="AliceBlue" Foreground="Black" DockPanel.Dock="Bottom" Width="100" Height="60" Click="Button_Click" FontSize="25" FontFamily="Arial"> Назад </Button>
     </DockPanel>
 </Window>
