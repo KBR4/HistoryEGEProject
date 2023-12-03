@@ -47,6 +47,7 @@ namespace HistProjTemplate
         private Image MapImage;
         private TextBox AnswerBox;
         private TextBlock QuestionBlock;
+        private StackPanel ButtonPanel;
         private Button PrevQButton;
         private Button NextQButton;
         private StackPanel QuestionAnswerPanel;
@@ -103,7 +104,7 @@ namespace HistProjTemplate
             MapImage.Margin = new Thickness(20, 20, 20, 20);
 
             QuestionAnswerPanel = new StackPanel();
-            QuestionAnswerPanel.VerticalAlignment = VerticalAlignment.Center;
+            QuestionAnswerPanel.VerticalAlignment = VerticalAlignment.Top;
             QuestionAnswerPanel.HorizontalAlignment = HorizontalAlignment.Center;
             QuestionAnswerPanel.Orientation = Orientation.Vertical;
 
@@ -112,18 +113,27 @@ namespace HistProjTemplate
             QuestionBlock.Padding = new Thickness(5, 5, 5, 5);
             QuestionBlock.Background = new SolidColorBrush(Colors.AliceBlue);
             QuestionBlock.FontSize = 20;
-            QuestionBlock.TextAlignment = TextAlignment.Center;
+            QuestionBlock.TextAlignment = TextAlignment.Left;
             QuestionBlock.TextWrapping = TextWrapping.Wrap;
             QuestionBlock.FontFamily = new FontFamily("Arial");
+            QuestionBlock.HorizontalAlignment = HorizontalAlignment.Left;
+            QuestionBlock.MinWidth = 300;
+            QuestionBlock.MaxWidth = 550;
+            QuestionBlock.VerticalAlignment = VerticalAlignment.Top;
 
             AnswerBox = new TextBox();
             AnswerBox.MaxLength = 30;   //Макс длина ответа
             AnswerBox.FontFamily = new FontFamily("Arial");
             AnswerBox.FontSize = 15;
-            AnswerBox.TextAlignment = TextAlignment.Center;
-            //AnswerBox.Width = 400;
+            AnswerBox.TextAlignment = TextAlignment.Left;
+            //AnswerBox.Width = 350;
             //AnswerBox.Height = 25;
             AnswerBox.Margin = new Thickness(0, 0, 0, 15);
+            AnswerBox.Width = QuestionBlock.Width;
+            AnswerBox.MinWidth = 300;
+            AnswerBox.MaxWidth = 550;
+            AnswerBox.HorizontalAlignment = HorizontalAlignment.Left;
+            AnswerBox.VerticalAlignment = VerticalAlignment.Top;
 
             NextQButton = new Button();
             NextQButton.Content = "Следующий вопрос";  //>>
@@ -139,9 +149,14 @@ namespace HistProjTemplate
             QuestionAnswerPanel.Children.Add(AnswerBox);
             
             //Панель для кнопок
-            StackPanel ButtonPanel = new StackPanel();
+            ButtonPanel = new StackPanel();
             ButtonPanel.Orientation = Orientation.Horizontal;
-            QuestionAnswerPanel.Children.Add(ButtonPanel);
+            ButtonPanel.HorizontalAlignment = HorizontalAlignment.Center;
+            ButtonPanel.MinWidth = 300;
+            //ButtonPanel.Width = 550;
+         // чтобы переместить панель кнопок в центр пишем параметр Center, вниз - Bottom
+            ButtonPanel.VerticalAlignment = VerticalAlignment.Bottom; 
+            //QuestionAnswerPanel.Children.Add(ButtonPanel);
 
             ButtonPanel.Children.Add(PrevQButton);
             ButtonPanel.Children.Add(NextQButton);           
@@ -164,8 +179,12 @@ namespace HistProjTemplate
 
             Grid.SetRow(QuestionAnswerPanel, 0);
             Grid.SetColumn(QuestionAnswerPanel, 1);
+            Grid.SetRow(ButtonPanel, 0);
+            Grid.SetColumn(ButtonPanel, 1);
             MainGrid.Children.Add(QuestionAnswerPanel);
+            MainGrid.Children.Add(ButtonPanel);
             QuestionAnswerPanel.Visibility = Visibility.Hidden;
+            ButtonPanel.Visibility = Visibility.Hidden;
 
             //Графическое оформление - свойства
             TextBlockInfo.Margin = new Thickness(15, 15, 15, 15);
@@ -202,6 +221,7 @@ namespace HistProjTemplate
             //Картинка и панель вопроса - ответа становятся видимыми
             MapImage.Visibility = Visibility.Visible;
             QuestionAnswerPanel.Visibility = Visibility.Visible;
+            ButtonPanel.Visibility = Visibility.Visible;
 
             //Картинка
             string imgsource = t.Source;
@@ -244,9 +264,21 @@ namespace HistProjTemplate
         }
         private void ShowQuestion(int n, Test t)    //Показать вопрос n теста t
         {
+            string bigString = "very big string AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
+                "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+            MessageBox.Show(bigString.Length.ToString());
             if (n>=0 && n <= t.AllQuestionsAnswers.Count)
             {
-                QuestionBlock.Text = t.AllQuestionsAnswers[n].question.ToString();
+                QuestionBlock.Text = t.AllQuestionsAnswers[n].question.ToString() + bigString;
                 AnswerBox.Text = UserAnswers[n];
             }           
         }
@@ -267,6 +299,7 @@ namespace HistProjTemplate
                 //Возврат к исходному состоянию приложения
                 MapImage.Visibility = Visibility.Hidden;
                 QuestionAnswerPanel.Visibility = Visibility.Hidden;
+                ButtonPanel.Visibility = Visibility.Hidden;
                 IsTestActive = false;
                 IsTestChosen = false;
                 TextBlockInfo.Text = "Для начала работы выберите тест в меню";
@@ -328,6 +361,7 @@ namespace HistProjTemplate
                 {
                     IsTestActive = false;
                     QuestionAnswerPanel.Visibility = Visibility.Hidden;
+                    ButtonPanel.Visibility = Visibility.Hidden;
                     MapImage.Visibility = Visibility.Hidden;
 
                     ChooseTestWindow CTW = new ChooseTestWindow();
