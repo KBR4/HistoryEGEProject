@@ -202,7 +202,7 @@ namespace HistProjTemplate
 
         private void AddTest_Click(object sender, RoutedEventArgs e)    //Добавить тест - новое окно спрашивает название
         {
-            PassWindow pw = new PassWindow();
+            PassWindow pw = new PassWindow("Введите название добавляемого теста:");
             if (pw.ShowDialog() == true)
             {
                 string NewTestName = pw.Password;
@@ -218,6 +218,10 @@ namespace HistProjTemplate
                 string TestName = TestView.SelectedItem.ToString();
                 string SectName = SectBox.SelectedItem.ToString();
                 RemoveTestByUser(SectName, TestName);
+            }
+            else
+            {
+                MessageBox.Show("Выберите тест, который вы хотите удалить");
             }
         }
 
