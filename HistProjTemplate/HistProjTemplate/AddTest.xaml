@@ -10,7 +10,7 @@
         <StackPanel x:Name="SectPanel" Margin="10" HorizontalAlignment="Left" Orientation="Vertical" Width="250">
             <TextBlock Margin="10" FontSize="15" FontFamily="15" HorizontalAlignment="Center"> Выбор раздела</TextBlock>
             <ComboBox x:Name="SectBox" MaxDropDownHeight="300" FontSize="13" FontFamily="Arial" Margin="10" Width="210" SelectionChanged="SectBox_SelectionChanged"></ComboBox>
-            <TextBlock Margin="10" x:Name="InfoBlock" FontSize="15" FontFamily="15" TextWrapping="Wrap"> Количество тестов: </TextBlock>
+            <TextBlock Margin="10" x:Name="InfoBlock" FontSize="15" FontFamily="15" TextWrapping="Wrap"> Инструкция по добавлению тестов: написать ее (можно в виде нового окна) </TextBlock>
         </StackPanel>
         <StackPanel Margin="10" x:Name="TestViewPanel" Width="350">
             <ListView x:Name="TestView" Height="350">
