@@ -152,5 +152,10 @@ namespace HistProjTemplate
         {
             this.DialogResult = true;
         }
+
+        private void SectionList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

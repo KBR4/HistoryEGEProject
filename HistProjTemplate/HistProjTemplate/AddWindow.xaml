@@ -9,7 +9,7 @@
     <StackPanel x:Name="MainPanel" Margin="10" Orientation="Horizontal">
         <DockPanel x:Name="TitleAndList" Margin="10" MinWidth="400">
             <TextBlock Margin="0,5,0,0" DockPanel.Dock="Top" FontFamily="Arial" FontSize="15" HorizontalAlignment="Center"> Разделы</TextBlock>
-            <ListView DockPanel.Dock="Top" x:Name="SectionList" MinHeight="300" FontFamily="Arial" FontSize="15" Margin="5"> </ListView>
+            <ListView DockPanel.Dock="Top" x:Name="SectionList" Height="300" FontFamily="Arial" FontSize="15" Margin="5" SelectionChanged="SectionList_SelectionChanged"> </ListView>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
                 <Button Height="30" Width="70" FontFamily="Arial" FontSize="13" Margin="10,0,10,0" Click="Add_Click"> Добавить </Button>
                 <Button Height="30" Width="70" FontFamily="Arial" FontSize="13" Margin="10,0,10,0" Click="Remove_Click"> Удалить </Button>

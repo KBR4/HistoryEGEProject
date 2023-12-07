@@ -378,7 +378,7 @@ namespace HistProjTemplate
         {
 
         }
-        private void AddSection_Click(object sender, RoutedEventArgs e) //Добавление раздела TO DO: СДЕЛАТЬ
+        private void AddSection_Click(object sender, RoutedEventArgs e) //Добавление раздела
         {
             if (!IsTestActive)
             {
@@ -390,7 +390,7 @@ namespace HistProjTemplate
 
                     if (EnteredPass == Pass)
                     {
-                        MessageBox.Show("Entered Pass Successfully");
+                        MessageBox.Show("Пароль введен успешно");
                         AddWindow aw = new AddWindow();
                         if (aw.ShowDialog() == true)
                         {
@@ -454,8 +454,8 @@ namespace HistProjTemplate
                     string Pass = ConfigurationManager.AppSettings["AdminPass"];
                     if (EnteredPass == Pass)
                     {
-                        MessageBox.Show("Entered Pass Successfully");
-                        AddWindow aw = new AddWindow();
+                        MessageBox.Show("Пароль введен успешно");
+                        AddTest aw = new AddTest();
                         if (aw.ShowDialog() == true)
                         {
 
@@ -472,7 +472,7 @@ namespace HistProjTemplate
                 MessageBox.Show("Сначала завершите текущий тест!");
             }
         }
-        private void Settings(object sender, RoutedEventArgs e) //??? TO DO: Сборка случайного теста - окно с выбором количества вопросов
+        private void Settings(object sender, RoutedEventArgs e) //TO DO: Сборка случайного теста - окно с выбором количества вопросов
         {
             
         }
