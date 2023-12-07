@@ -50,3 +50,7 @@ C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\Hist
 C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\ResultsScreen.g.cs
 C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\ConfirmWindow.baml
 C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\ResultsScreen.baml
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\PassWindow.g.cs
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\PassWindow.baml
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\AddWindow.g.cs
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\AddWindow.baml

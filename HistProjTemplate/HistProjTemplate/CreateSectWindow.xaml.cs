@@ -141,7 +141,7 @@ namespace HistProjTemplate
             DockPanel PrevDock1 = new DockPanel();
             Grid.SetRow(PrevDock1, 2);
             Grid.SetColumn(PrevDock1, 0);
-            MainSelectionGrid.Children.Add(PrevDock0);
+            MainSelectionGrid.Children.Add(PrevDock1);
 
             Button addTestButton = new Button();
             addTestButton.Content = "Добавить раздел";

@@ -6,5 +6,4 @@
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
         Title="ЕГЭ по истории - выбор теста" WindowStyle="None" Height="800" Name="SelWindow" Width="800" WindowState="Maximized">
-    
 </Window>
