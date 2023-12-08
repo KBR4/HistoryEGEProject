@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
         Title="Результаты теста" Height="450" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="Height">
-    <DockPanel x:Name="ResPanel" Margin="15" Background="Ivory">
+    <DockPanel x:Name="ResPanel" Margin="15">
         <ListView x:Name="ResList" DockPanel.Dock="Top"  Margin="10, 10, 10, 10" FontSize="15" >
             <ListView.View>
                 <GridView>

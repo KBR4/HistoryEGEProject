@@ -84,10 +84,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CreateSectWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -101,9 +97,6 @@
     </Compile>
     <Compile Include="ConfirmWindow.xaml.cs">
       <DependentUpon>ConfirmWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CreateSectWindow.xaml.cs">
-      <DependentUpon>CreateSectWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

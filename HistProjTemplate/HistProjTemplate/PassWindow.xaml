@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
-        Title="Авторизация" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
@@ -13,12 +13,12 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="TextInfo">Введите пароль:</TextBlock>
-        <TextBox Name="passwordBox" Grid.Row="1" MinWidth="300" MaxLength="30"></TextBox>
+        <TextBlock FontFamily="Arial" FontSize="12" x:Name="TextInfo">Введите пароль:</TextBlock>
+        <TextBox VerticalAlignment="Center" FontFamily="Arial" FontSize="12" Name="passwordBox" Grid.Row="1" MinWidth="300" MaxLength="30"></TextBox>
 
         <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,15,0,0">
-            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">OK</Button>
-            <Button IsCancel="True" MinWidth="60">Отмена</Button>
+            <Button Background="AliceBlue" IsDefault="True" FontFamily="Arial" FontSize="12" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">OK</Button>
+            <Button  Background="AliceBlue" IsCancel="True" FontFamily="Arial" FontSize="12" MinWidth="60">Отмена</Button>
         </WrapPanel>
 
     </Grid>

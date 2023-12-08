@@ -24,8 +24,8 @@
             <TextBlock x:Name="NumbQuestionsBlock" Margin="10,10,0,0" DockPanel.Dock="Top" FontFamily="Arial" FontSize="15" HorizontalAlignment="Left" TextWrapping="Wrap"> Всего вопросов: </TextBlock>
 
             <StackPanel x:Name="ButtonPanel" Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="10">
-                <Button Click="ConfirmClick" Height="30" Width="70" FontFamily="Arial" FontSize="15" Margin="10" x:Name="ConfirmButton"> Выбрать </Button>
-                <Button Click="GoBack_Click" Height="30" Width="70" FontFamily="Arial" FontSize="15" Margin="10" x:Name="GoBackButton"> Назад </Button>
+                <Button Background="AliceBlue" Click="ConfirmClick" Height="30" Width="70" FontFamily="Arial" FontSize="15" Margin="10" x:Name="ConfirmButton"> Выбрать </Button>
+                <Button Background="AliceBlue" Click="GoBack_Click" Height="30" Width="70" FontFamily="Arial" FontSize="15" Margin="10" x:Name="GoBackButton"> Назад </Button>
             </StackPanel>
         </DockPanel>
 

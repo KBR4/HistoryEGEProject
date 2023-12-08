@@ -14,8 +14,8 @@
         </Grid.RowDefinitions>
         <TextBlock x:Name="QuestionBlock" FontFamily="Arial" FontSize="15"></TextBlock>
         <WrapPanel Grid.Row="2" HorizontalAlignment="Right" Margin="0,15,0,0">
-            <Button IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">Да</Button>
-            <Button IsCancel="True" MinWidth="60" Click="Button_Click">Нет</Button>
+            <Button Background="AliceBlue" IsDefault="True" Click="Accept_Click" MinWidth="60" Margin="0,0,10,0">Да</Button>
+            <Button Background="AliceBlue" IsCancel="True" MinWidth="60" Click="Button_Click">Нет</Button>
         </WrapPanel>
     </Grid>
 </Window>
