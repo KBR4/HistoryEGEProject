@@ -348,9 +348,12 @@ namespace HistProjTemplate
                 ChooseTestWindow CTW = new ChooseTestWindow();
                 if (CTW.ShowDialog() == true)
                 {
-                    CurrentTest = CTW.ChosenTest;
-                    IsTestChosen = true;
-                    TextBlockInfo.Text = "Вы выбрали тест " + CurrentTest.Name + ". Нажмите 'Начать тест' для прохождения работы.";
+                    if (CTW.ChosenTest != null)
+                    {
+                        CurrentTest = CTW.ChosenTest;
+                        IsTestChosen = true;
+                        TextBlockInfo.Text = "Вы выбрали тест " + CurrentTest.Name + ". Нажмите 'Начать тест' для прохождения работы.";
+                    }                  
                 }
             }
             else //Если есть активный тест
@@ -367,9 +370,12 @@ namespace HistProjTemplate
                     ChooseTestWindow CTW = new ChooseTestWindow();
                     if (CTW.ShowDialog() == true)
                     {
-                        CurrentTest = CTW.ChosenTest;
-                        IsTestChosen = true;
-                        TextBlockInfo.Text = "Вы выбрали тест " + CurrentTest.Name + ". Нажмите 'Начать тест' для прохождения работы.";
+                        if (CTW.ChosenTest != null)
+                        {
+                            CurrentTest = CTW.ChosenTest;
+                            IsTestChosen = true;
+                            TextBlockInfo.Text = "Вы выбрали тест " + CurrentTest.Name + ". Нажмите 'Начать тест' для прохождения работы.";
+                        }
                     }
                 }
             }
