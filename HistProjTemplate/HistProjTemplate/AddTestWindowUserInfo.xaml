@@ -1,0 +1,22 @@
+﻿<Window x:Class="HistProjTemplate.AddTestWindowUserInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HistProjTemplate"
+        mc:Ignorable="d"
+        Title="AddTestWindowUserInfo" Height="450" Width="800">
+    <StackPanel>
+        <TextBlock> Название </TextBlock>
+        <TextBox> Здесь юзер пишет название </TextBox>
+        <Button Click="AddMapClick">Картинку</Button>
+        <Label> Сюда помещается название (только название, без остального пути) выбранного файла </Label>
+        <Image x:Name="PreviewIMG" Height="100" Width="100"> </Image>
+        <Button Click="AddTXTFileClick"> Добавить файл с вопросами </Button>
+        <TextBlock> Сюда помещаются выгруженные из тхт файла вопросы </TextBlock>
+        <Button Click="NextQClick"> Следующий вопрос </Button>
+        <Button Click="PrevQClick"> Предыдущий вопрос </Button>
+        <Button Click="GobBackClick"> Назад </Button>
+        <Button Click="AddTestClick"> Добавить тест - работает если написано название, добавлены вопросы и добавлена карта </Button>
+    </StackPanel>
+</Window>

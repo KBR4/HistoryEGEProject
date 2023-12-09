@@ -202,13 +202,22 @@ namespace HistProjTemplate
 
         private void AddTest_Click(object sender, RoutedEventArgs e)    //Добавить тест - новое окно спрашивает название
         {
-            PassWindow pw = new PassWindow("Введите название добавляемого теста:");
-            if (pw.ShowDialog() == true)
+            AddTestWindowUserInfo atw = new AddTestWindowUserInfo();
+            if (atw.ShowDialog() == true)
             {
-                string NewTestName = pw.Password;
-                string SectName = SectBox.SelectedItem.ToString();
-                AddTestByUser(NewTestName, SectName);
+                Test newTest = atw.AddedTest;
+                //Егор - сделать
+                //newTest добавляется в нужный раздел и сериализуется
             }
+
+            //Старая функция
+            //PassWindow pw = new PassWindow("Введите название добавляемого теста:");
+            //if (pw.ShowDialog() == true)
+            //{
+            //    string NewTestName = pw.Password;
+            //    string SectName = SectBox.SelectedItem.ToString();
+            //    AddTestByUser(NewTestName, SectName);
+            //}
         }
 
         private void RemoveTest_Click(object sender, RoutedEventArgs e)  //Удалить выбранный тест

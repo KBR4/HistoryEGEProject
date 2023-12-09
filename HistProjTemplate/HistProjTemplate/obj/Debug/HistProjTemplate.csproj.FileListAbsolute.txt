@@ -54,3 +54,5 @@ C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplat
 C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\AddWindow.baml
 C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\AddTest.g.cs
 C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\AddTest.baml
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\AddTestWindowUserInfo.g.cs
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\AddTestWindowUserInfo.baml
