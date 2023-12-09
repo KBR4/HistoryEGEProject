@@ -64,7 +64,7 @@ namespace HistProjTemplate
         {
             //Егор - сделать
             ImageSource = GetImageSource(TextBoxName.Text);
-            //MessageBox.Show(ImageSource);
+            MessageBox.Show(ImageSource);
             PreviewIMG.Source = new BitmapImage(new Uri(ImageSource, UriKind.RelativeOrAbsolute));
             PreviewIMG.Visibility = Visibility.Visible;
         }
@@ -109,7 +109,7 @@ namespace HistProjTemplate
             //MessageBox.Show(questionAnswers[0].question.ToString() + "\n"
             //    + questionAnswers[0].answer.GetAnswer());
             counter = 0;
-            if (questionAnswers.Count != 0)
+            if (questionAnswers != null && questionAnswers.Count != 0)
             {
                 TextBlockQuestion.Text = questionAnswers[0].question.ToString();
             }
@@ -153,7 +153,7 @@ namespace HistProjTemplate
                             {
                                 if (first)
                                 {
-                                    strQuestion += curString.Substring(2);
+                                    strQuestion += curString.Substring(2) + "\n";
                                     first = false;
                                 }
                                 else
@@ -165,13 +165,15 @@ namespace HistProjTemplate
                                         strQuestion = "";
                                         //MessageBox.Show(curString.Substring(2));
                                         answerList.Add(curString.Substring(2));
-                                        newAnswer = new Answer(curString.Substring(2));
+                                        string[] str = curString.Split(new char[] { ' ' });
+                                        curString = str[1];
+                                        newAnswer = new Answer(curString);
                                         newQuestionAnswer = new QuestionAnswer(newQuestion, newAnswer);
                                         newQuestionAnswers.Add(newQuestionAnswer);
                                     }
                                     else
                                     {
-                                        strQuestion += "\n" + curString;
+                                        strQuestion += curString + "\n";
                                     }
 
                                 }
@@ -236,7 +238,10 @@ namespace HistProjTemplate
         private void AddTestClick(object sender, RoutedEventArgs e) //кнопка возврата к предыдущему окну
         {
             //Егор - сделать
+            MessageBox.Show(ImageSource);
             AddedTest = new Test(TextBoxName.Text, ImageSource, questionAnswers);
+            MessageBox.Show(AddedTest.Name + "\n" + AddedTest.AllQuestionsAnswers[0].question + "\n"
+                + AddedTest.AllQuestionsAnswers[0].answer.ToString() + "\n" + AddedTest.Source);
             // AddedTest = ... //эта штука возвращает добавленный тест предыдущему окну
             this.DialogResult = true;
         }

@@ -25,15 +25,16 @@ namespace HistLib
         {
             Name = name;
 
-            //Проверка существование картинки по источнику (пути)
-            if (CheckUploadImage(source))
-            {
-                Source = source;
-            }
-            else
-            {
-                source = null; //TO DO: добавить пустую картинку чтобы здесь не было пусто
-            }
+            Source = source;
+            ////Проверка существование картинки по источнику (пути)
+            //if (CheckUploadImage(source))
+            //{
+            //    Source = source;
+            //}
+            //else
+            //{
+            //    source = null; //TO DO: добавить пустую картинку чтобы здесь не было пусто
+            //}
             AllQuestionsAnswers = QA;
         }
         public override string ToString()

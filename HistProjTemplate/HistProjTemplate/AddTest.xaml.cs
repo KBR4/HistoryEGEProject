@@ -68,125 +68,137 @@ namespace HistProjTemplate
             }
         }
 
-        public void AddTestByUser(string NameTest, string SectName)
+        public void AddTestByUser(Test test)
         {
-            Sections = (List<Sect>)Deserialization();
-            Sect s = GetSectByName(SectName);
-            string ImageSource = GetImageSource(NameTest);
-            List<QuestionAnswer> QA = GetAllQuestionsAnswers();
-            Test curTest = new Test(NameTest, ImageSource, QA);
-            s.AddTest(curTest);
-            Serialization(Sections);
-        }
-
-        // добавление изображения и ссылки на него
-        public string GetImageSource(string NameTest)
-        {
-            BitmapImage bitmap = new BitmapImage();
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Title = "Выберите изображение";
-
-            //фильтр для того, чтобы выбирать только из фото
-            dialog.Filter =
-        "Image files|*.bmp;*.jpg;*.gif;*.png;*.tif|All files|*.*";
-            dialog.FilterIndex = 1;
-
-            if (dialog.ShowDialog() == true)
+            if (SectBox.SelectedItem != null)
             {
-                bitmap.UriSource = new Uri(dialog.FileName);
-                string pathToImages = Assembly.GetExecutingAssembly().Location;
-
-                //задание абсолютного пути до папки с ресурсами Images 
-                pathToImages = pathToImages.Remove(pathToImages.Length - 30);
-                pathToImages += NameTest;
-                MessageBox.Show($"File name: {dialog.FileName} \nYour path: \n{pathToImages}");
-                File.Copy(dialog.FileName, System.IO.Path.Combine(pathToImages, dialog.SafeFileName));
-                return pathToImages;     // абсолютный путь до изображения 
-            }
-            return "ОШИБКА";  // априори обычно здесь нет ошибки
-                              // и пользователь выбирает какую-то картинку, либо можно вернуть null
-        }
-
-        public List<QuestionAnswer> GetAllQuestionsAnswers()
-        {
-            BitmapImage bitmap = new BitmapImage();
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Title = "Выберите файл с вопросами и ответами для теста";
-
-            //фильтр для того, чтобы выбирать только .txt
-            dialog.Filter =
-        "TXT files|*.txt;|All files|*.*";
-            dialog.FilterIndex = 1;
-
-            if (dialog.ShowDialog() == true)
-            {
-                bitmap.UriSource = new Uri(dialog.FileName);
-                string pathToText = Assembly.GetExecutingAssembly().Location;
-                // чтение из файла
-                using (StreamReader sr = new StreamReader(pathToText))
+                Sections = (List<Sect>)Deserialization();
+                string SectName = SectBox.SelectedItem.ToString();
+                Sect s = GetSectByName(SectName);
+                s.AddTest(test);
+                Serialization(Sections);
+                TestView.Items.Clear();
+                foreach (Test t in s.Tests)
                 {
-                    int j = 0;   // счетчик
-                    List<string> answerList = new List<string>();       // лист ответов
-                    string stringQuestion = "";                         // пустая строка, чтобы прога не ругалась на 115 строке
-                    Question newQuestion = new Question(stringQuestion);// целый вопрос
-                    Answer newAnswer;                                   // целый ответ
-                    QuestionAnswer newQuestionAnswer;                   // объединение ответа и вопроса в один объект 
-                    List<QuestionAnswer> newQuestionAnswers = new List<QuestionAnswer>();
-
-                    if (!sr.EndOfStream)
-                    {
-                        while (!sr.EndOfStream)
-                        {
-                            string curString = sr.ReadLine();
-                            if (curString[0] != 'A') // Английская
-                            {
-                                if (answerList != null)
-                                {
-                                    newAnswer = new Answer(answerList);
-                                    newQuestionAnswer = new QuestionAnswer(newQuestion, newAnswer);
-                                    newQuestionAnswers.Add(newQuestionAnswer);
-                                }
-                                answerList = new List<string>(); // обнуление листа ответов
-                                if (curString[0] != 'A')
-                                {
-                                    stringQuestion += curString.Substring(3);
-                                }
-                                else
-                                {
-                                    stringQuestion += "\n" + curString;
-                                }
-
-                                //newQuestion = new Question(curString.Substring(3)); // 0, 1 и 2 символы это Q:_ (_ - пробел)
-                            }
-                            else
-                            {
-                                newQuestion = new Question(stringQuestion); // 0, 1 и 2 символы это Q:_ (_ - пробел)
-                                stringQuestion = "";
-                                if (curString[0] == 'A') // Английская
-                                {
-                                    answerList.Add(curString.Substring(3));
-                                }
-                                //else
-                                //{
-                                //    answerList.Add(curString);
-                                //}
-                            }
-                            j++;
-                        }
-                        // так как последняя строка это A, то нужно создать еще одну пару 
-                        newAnswer = new Answer(answerList);
-                        newQuestionAnswer = new QuestionAnswer(newQuestion, newAnswer);
-                        newQuestionAnswers.Add(newQuestionAnswer);
-                        return newQuestionAnswers;
-                    }
-                    else
-                    {
-                        // нам дали пустой файл :(
-                    }
+                    TestView.Items.Add(t.Name);
                 }
             }
-            return null;  // априори обычно здесь нет ошибки, но на всякий случай null
+            else
+            {
+                MessageBox.Show("Введите название раздела.");
+            }
         }
+
+        // Это все внутри AddTestWindowUserInfo
+
+        //// добавление изображения и ссылки на него
+        //public string GetImageSource(string NameTest)
+        //{
+        //    BitmapImage bitmap = new BitmapImage();
+        //    OpenFileDialog dialog = new OpenFileDialog();
+        //    dialog.Title = "Выберите изображение";
+
+        //    //фильтр для того, чтобы выбирать только из фото
+        //    dialog.Filter =
+        //"Image files|*.bmp;*.jpg;*.gif;*.png;*.tif|All files|*.*";
+        //    dialog.FilterIndex = 1;
+
+        //    if (dialog.ShowDialog() == true)
+        //    {
+        //        bitmap.UriSource = new Uri(dialog.FileName);
+        //        string pathToImages = Assembly.GetExecutingAssembly().Location;
+
+        //        //задание абсолютного пути до папки с ресурсами Images 
+        //        pathToImages = pathToImages.Remove(pathToImages.Length - 30);
+        //        pathToImages += NameTest;
+        //        MessageBox.Show($"File name: {dialog.FileName} \nYour path: \n{pathToImages}");
+        //        File.Copy(dialog.FileName, System.IO.Path.Combine(pathToImages, dialog.SafeFileName));
+        //        return pathToImages;     // абсолютный путь до изображения 
+        //    }
+        //    return "ОШИБКА";  // априори обычно здесь нет ошибки
+        //                      // и пользователь выбирает какую-то картинку, либо можно вернуть null
+        //}
+
+        //public List<QuestionAnswer> GetAllQuestionsAnswers()
+        //{
+        //    BitmapImage bitmap = new BitmapImage();
+        //    OpenFileDialog dialog = new OpenFileDialog();
+        //    dialog.Title = "Выберите файл с вопросами и ответами для теста";
+
+        //    //фильтр для того, чтобы выбирать только .txt
+        //    dialog.Filter =
+        //"TXT files|*.txt;|All files|*.*";
+        //    dialog.FilterIndex = 1;
+
+        //    if (dialog.ShowDialog() == true)
+        //    {
+        //        bitmap.UriSource = new Uri(dialog.FileName);
+        //        string pathToText = Assembly.GetExecutingAssembly().Location;
+        //        // чтение из файла
+        //        using (StreamReader sr = new StreamReader(pathToText))
+        //        {
+        //            int j = 0;   // счетчик
+        //            List<string> answerList = new List<string>();       // лист ответов
+        //            string stringQuestion = "";                         // пустая строка, чтобы прога не ругалась на 115 строке
+        //            Question newQuestion = new Question(stringQuestion);// целый вопрос
+        //            Answer newAnswer;                                   // целый ответ
+        //            QuestionAnswer newQuestionAnswer;                   // объединение ответа и вопроса в один объект 
+        //            List<QuestionAnswer> newQuestionAnswers = new List<QuestionAnswer>();
+
+        //            if (!sr.EndOfStream)
+        //            {
+        //                while (!sr.EndOfStream)
+        //                {
+        //                    string curString = sr.ReadLine();
+        //                    if (curString[0] != 'A') // Английская
+        //                    {
+        //                        if (answerList != null)
+        //                        {
+        //                            newAnswer = new Answer(answerList);
+        //                            newQuestionAnswer = new QuestionAnswer(newQuestion, newAnswer);
+        //                            newQuestionAnswers.Add(newQuestionAnswer);
+        //                        }
+        //                        answerList = new List<string>(); // обнуление листа ответов
+        //                        if (curString[0] != 'A')
+        //                        {
+        //                            stringQuestion += curString.Substring(3);
+        //                        }
+        //                        else
+        //                        {
+        //                            stringQuestion += "\n" + curString;
+        //                        }
+
+        //                        //newQuestion = new Question(curString.Substring(3)); // 0, 1 и 2 символы это Q:_ (_ - пробел)
+        //                    }
+        //                    else
+        //                    {
+        //                        newQuestion = new Question(stringQuestion); // 0, 1 и 2 символы это Q:_ (_ - пробел)
+        //                        stringQuestion = "";
+        //                        if (curString[0] == 'A') // Английская
+        //                        {
+        //                            answerList.Add(curString.Substring(3));
+        //                        }
+        //                        //else
+        //                        //{
+        //                        //    answerList.Add(curString);
+        //                        //}
+        //                    }
+        //                    j++;
+        //                }
+        //                // так как последняя строка это A, то нужно создать еще одну пару 
+        //                newAnswer = new Answer(answerList);
+        //                newQuestionAnswer = new QuestionAnswer(newQuestion, newAnswer);
+        //                newQuestionAnswers.Add(newQuestionAnswer);
+        //                return newQuestionAnswers;
+        //            }
+        //            else
+        //            {
+        //                // нам дали пустой файл :(
+        //            }
+        //        }
+        //    }
+        //    return null;  // априори обычно здесь нет ошибки, но на всякий случай null
+        //}
 
         private void SectBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -206,6 +218,8 @@ namespace HistProjTemplate
             if (atw.ShowDialog() == true)
             {
                 Test newTest = atw.AddedTest;
+                AddTestByUser(newTest);
+
                 //Егор - сделать
                 //newTest добавляется в нужный раздел и сериализуется
             }
