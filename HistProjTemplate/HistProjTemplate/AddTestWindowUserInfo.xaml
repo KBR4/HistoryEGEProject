@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
-        Title="AddTestWindowUserInfo" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Добавление теста из файла" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <StackPanel Orientation="Vertical">
         <Grid Margin="10">
             <Grid.ColumnDefinitions>
@@ -13,21 +13,27 @@
                 <ColumnDefinition x:Name="SecC"> </ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition x:Name="FirstR"></RowDefinition>
-                <RowDefinition x:Name="SecR"></RowDefinition>
-                <RowDefinition x:Name="ThirdR"></RowDefinition>
+                <RowDefinition Height="30" x:Name="FirstR"></RowDefinition>
+                <RowDefinition Height="150" x:Name="SecR"></RowDefinition>
             </Grid.RowDefinitions>
+
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0" FontFamily="Arial" FontSize="15" x:Name="NameBlock"> Введите название:</TextBlock>
+            <TextBox MinWidth="380" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" FontFamily="Arial" FontSize="15" MaxLength="40" x:Name="TextBoxName"></TextBox>
+            <Image Margin="10" Grid.Column="1" Grid.Row="1" x:Name="PreviewIMG" Height="125" Width="125"></Image>
+            <StackPanel Grid.Column="0" Grid.Row="1">
+                <Button Margin="10,30,10,10" Background="AliceBlue" Height="30" Width="150" Grid.Column="0" Grid.Row="1" FontFamily="Arial" FontSize="15" x:Name="AddMapB" Click="AddMapClick">Добавить карту</Button>
+                <Button Margin="10,20,10,10" Background="AliceBlue" Height="30" Width="150" Grid.Column="0" Grid.Row="2" FontFamily="Arial" FontSize="10" x:Name="AddTXTFileB" Click="AddTXTFileClick">Добавить файл с вопросами</Button>
+            </StackPanel>
         </Grid>
-        
-        <TextBlock Grid.Column="0" Grid.Row="0" FontFamily="Arial" FontSize="15" x:Name="NameBlock"> Название</TextBlock>
-        <TextBox Grid.Column="1" Grid.Row="0" FontFamily="Arial" FontSize="15" MaxLength="40" x:Name="TextBoxName">Здесь юзер пишет название</TextBox>
-        <Button Grid.Column="0" Grid.Row="1" FontFamily="Arial" FontSize="15" x:Name="AddMapB" Click="AddMapClick">Картинку</Button>
-        <Image Grid.Column="1" Grid.Row="1" x:Name="PreviewIMG" Height="100" Width="100"></Image>
-        <Button FontFamily="Arial" FontSize="15" x:Name="AddTXTFileB" Click="AddTXTFileClick">Добавить файл с вопросами</Button>
-        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="15" x:Name="TextBlockQuestion"> Здесь будут ваши вопросы </TextBlock>
-        <Button FontFamily="Arial" FontSize="15" x:Name="NextB" Click="NextQClick"> Следующий вопрос </Button>
-        <Button FontFamily="Arial" FontSize="15" x:Name="PrevB" Click="PrevQClick"> Предыдущий вопрос </Button>
-        <Button FontFamily="Arial" FontSize="15" x:Name="GoB" Click="GobBackClick"> Назад </Button>
-        <Button FontFamily="Arial" FontSize="15" x:Name="ReadyB"  Click="AddTestClick"> Добавить тест - работает если написано название, добавлены вопросы и добавлена карта </Button>
+
+        <ScrollViewer Width="700" MaxWidth="700" MaxHeight="150" Height="150">
+            <TextBlock Margin="10" Width="650" MaxWidth="650" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="15" x:Name="TextBlockQuestion"> Здесь будут ваши вопросы</TextBlock>
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="10" Background="AliceBlue" FontFamily="Arial" FontSize="13" x:Name="GoB" Click="GobBackClick">Назад</Button>
+            <Button Margin="10" Background="AliceBlue" FontFamily="Arial" FontSize="13" x:Name="PrevB" Click="PrevQClick"> Предыдущий вопрос </Button>
+            <Button Margin="10" Background="AliceBlue" FontFamily="Arial" FontSize="13" x:Name="NextB" Click="NextQClick">Следующий вопрос</Button>
+            <Button Margin="10" Background="AliceBlue" FontFamily="Arial" FontSize="13" x:Name="ReadyB"  Click="AddTestClick">Добавить тест</Button>
+        </StackPanel>
     </StackPanel>
 </Window>
