@@ -9,32 +9,14 @@ namespace HistLib
     [Serializable]
     public class Question               //вопрос = строка. проверка на слишком длинный вопрос
     {
-        private string question;
-        public string QuestionP
-        {
-            get
-            {
-                return question;
-            }
-            set
-            {
-                if (value.Length > 500)
-                {
-                    //MessageBox.Show("Вопрос слишком большой! Сократите длину вопроса до 500 символов.");
-                }
-                else
-                {
-                    question = value;
-                }
-            }
-        }
+        public string Que { get; set; }
         public Question(string s)
         {
-            QuestionP = s;
+            Que = s;
         }
         public override string ToString()
         {
-            return question;
+            return Que;
         }
     }
 }

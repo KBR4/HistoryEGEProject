@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 using HistLib;
 using Microsoft.Win32;
 using static System.Collections.Specialized.BitVector32;
-
+using System.Text.RegularExpressions;
 namespace HistProjTemplate
 {
     /// <summary>
@@ -29,44 +29,54 @@ namespace HistProjTemplate
         private string ImageSource;
         private List<QuestionAnswer> questionAnswers;
         private int counter;
+        private bool NameAdded;
+        private bool MapAdded;
+        private bool QAdded;
         public AddTestWindowUserInfo()
         {
             InitializeComponent();
+            NameAdded = false;
+            MapAdded = false;
+            QAdded = false;
+            NextB.IsEnabled = false;
+            PrevB.IsEnabled = false;
         }
 
         // Сериализация вроде не нужна
-        public void Serialization(object obj)
-        {
-            BinaryFormatter formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
-            using (FileStream fs = new FileStream("sections.dat", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, obj);
-            }
-        }
-
-        public object Deserialization()
-        {
-            BinaryFormatter formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
-            object obj = new object();
-            using (FileStream fs = new FileStream("sections.dat", FileMode.OpenOrCreate))
-            {
-                obj = formatter.Deserialize(fs);
-                return obj;
-            }
-        }
-
-        //public void AddTestByUser(string NameTest, string SectName)
+        //public void Serialization(object obj)
         //{
-        //    string ImageSource = GetImageSource(NameTest);
+        //    BinaryFormatter formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
+        //    using (FileStream fs = new FileStream("sections.dat", FileMode.OpenOrCreate))
+        //    {
+        //        formatter.Serialize(fs, obj);
+        //    }
+        //}
+
+        //public object Deserialization()
+        //{
+        //    BinaryFormatter formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
+        //    object obj = new object();
+        //    using (FileStream fs = new FileStream("sections.dat", FileMode.OpenOrCreate))
+        //    {
+        //        if (fs.Length > 0)
+        //        {
+        //            obj = formatter.Deserialize(fs);
+        //            return obj;
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
         //}
 
         private void AddMapClick(object sender, RoutedEventArgs e) //добавить картинку, отправить ее в имагес, показать превью на экране
         {
-            //Егор - сделать
             ImageSource = GetImageSource(TextBoxName.Text);
             MessageBox.Show(ImageSource);
             PreviewIMG.Source = new BitmapImage(new Uri(ImageSource, UriKind.RelativeOrAbsolute));
             PreviewIMG.Visibility = Visibility.Visible;
+            MapAdded = true;
         }
         public string GetImageSource(string NameTest)
         {
@@ -102,105 +112,93 @@ namespace HistProjTemplate
 
         private void AddTXTFileClick(object sender, RoutedEventArgs e) //добавить тхт файл, сгенерировать из него массив QuestionsAnswers
         {
-            //Егор - сделать
-            questionAnswers = new List<QuestionAnswer>();
-            questionAnswers = GetAllQuestionsAnswers();
-            //MessageBox.Show(questionAnswers.Count.ToString());
-            //MessageBox.Show(questionAnswers[0].question.ToString() + "\n"
-            //    + questionAnswers[0].answer.GetAnswer());
-            counter = 0;
-            if (questionAnswers != null && questionAnswers.Count != 0)
-            {
-                TextBlockQuestion.Text = questionAnswers[0].question.ToString();
-            }
-            else
-            {
-                TextBlockQuestion.Text = "Вопросов нет.";
-            }
-        }
-
-        public List<QuestionAnswer> GetAllQuestionsAnswers()
-        {
+            List<QuestionAnswer> lqa = new List<QuestionAnswer>();
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = "Выберите файл с вопросами и ответами для теста";
 
             //фильтр для того, чтобы выбирать только .txt
-            dialog.Filter =
-        "TXT files|*.txt;|All files|*.*";
+            dialog.Filter = "TXT files|*.txt;|All files|*.*";
             dialog.FilterIndex = 1;
 
             if (dialog.ShowDialog() == true)
             {
                 string pathToText = dialog.FileName;
-                // чтение из файла
-                using (StreamReader sr = new StreamReader(pathToText))
+                using (StreamReader sr = new StreamReader(pathToText, Encoding.Default))
                 {
-                    int j = 0;   // счетчик
-                    List<string> answerList = new List<string>();       // лист ответов
-                    string strQuestion = "";                            // пустая строка, чтобы прога не ругалась на 115 строке
-                    Question newQuestion = new Question(strQuestion);   // целый вопрос
-                    Answer newAnswer = new Answer("");                  // целый ответ
-                    QuestionAnswer newQuestionAnswer;                   // объединение ответа и вопроса в один объект 
-                    List<QuestionAnswer> newQuestionAnswers = new List<QuestionAnswer>();
-
-                    if (!sr.EndOfStream)
+                    string[] sQ = sr.ReadToEnd().Split(new string[] { "Q:" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (sQ.Length > 0)
                     {
-                        while (!sr.EndOfStream)
-                        {
-                            string curString = sr.ReadLine();
-                            bool first = true;
-                            while (!sr.EndOfStream && !curString.Contains("A: "))
+                        for (int i = 0; i<sQ.Length; i++)
+                        {                      
+                            string[] sAns = sQ[i].Split(new string[] { "A:" }, StringSplitOptions.RemoveEmptyEntries);
+                            if (sAns.Length > 1)
                             {
-                                if (first)
+                                if (!string.IsNullOrEmpty(sQ[0]) && !string.IsNullOrEmpty(sQ[1]))
                                 {
-                                    strQuestion += curString.Substring(2) + "\n";
-                                    first = false;
+                                    string sq = sAns[0].Trim(new char[] { ' ', '\n', '\t', '\r' });
+                                    Question q = new Question(sq);
+                                    List<string> la = new List<string>();
+                                    for (int j = 1; j < sAns.Length; j++)
+                                    {
+                                        string ss = sAns[j];
+                                        ss = ss.Trim(new char[] { ' ', '\n', '\t', '\r' });
+                                        la.Add(ss);
+                                    }
+                                    Answer ans = new Answer(la);
+                                    QuestionAnswer qa = new QuestionAnswer(q, ans);
+                                    lqa.Add(qa);
                                 }
                                 else
                                 {
-                                    curString = sr.ReadLine();
-                                    if (curString.Contains("A: "))
-                                    {
-                                        newQuestion = new Question(strQuestion);
-                                        strQuestion = "";
-                                        //MessageBox.Show(curString.Substring(2));
-                                        answerList.Add(curString.Substring(2));
-                                        string[] str = curString.Split(new char[] { ' ' });
-                                        curString = str[1];
-                                        newAnswer = new Answer(curString);
-                                        newQuestionAnswer = new QuestionAnswer(newQuestion, newAnswer);
-                                        newQuestionAnswers.Add(newQuestionAnswer);
-                                    }
-                                    else
-                                    {
-                                        strQuestion += curString + "\n";
-                                    }
-
+                                    MessageBox.Show("Проверьте соответствие используемого файла требованиям оформления - один из вопросов или ответов пуст");
+                                    break;
                                 }
-
                             }
-
-                            //MessageBox.Show($"{strQuestion}");
-                            //strQuestion = "";
+                            else
+                            {
+                                MessageBox.Show("Проверьте соответствие используемого файла требованиям оформления - на один из вопрос не найдено ответов");
+                                break;
+                            }
                         }
-                        return newQuestionAnswers;
-                        //MessageBox.Show(newQuestionAnswers[0].answer.ToString());
                     }
                     else
                     {
-                        // нам дали пустой файл :(
+                        MessageBox.Show("Проверьте соответсвие используемого файла требованиям оформления - вопросы не найдены");
                     }
                 }
+
             }
-            return null;  // априори обычно здесь нет ошибки, но на всякий случай null
+            questionAnswers = lqa;
+            counter = 0;
+            if (questionAnswers != null && questionAnswers.Count != 0)
+            {
+                if (questionAnswers.Count > 0)
+                {
+                    NextB.IsEnabled = true;
+                }
+                PrevB.IsEnabled = false;
+                TextBlockQuestion.Text = "Вопрос: " + questionAnswers[0].question.ToString() + "\n"+ "Ответ: " + questionAnswers[0].answer.GetAnswer();
+            }
+            else
+            {
+                TextBlockQuestion.Text = "Вопросов нет";
+            }
+            QAdded = true;
         }
+
+        
 
         private void NextQClick(object sender, RoutedEventArgs e) //к следующему вопросу (вопросы подгружены из тхт)
         {
             counter++;
             if (questionAnswers.Count > 0 && counter < questionAnswers.Count)
             {
-                TextBlockQuestion.Text = questionAnswers[counter].question.ToString();
+                if (counter == questionAnswers.Count - 1)
+                {
+                    NextB.IsEnabled = false;                   
+                }
+                PrevB.IsEnabled = true;
+                TextBlockQuestion.Text = "Вопрос: " + questionAnswers[counter].question.ToString() + "\n" + "Ответ: " + questionAnswers[counter].answer.GetAnswer();
             }
             else
             {
@@ -220,7 +218,12 @@ namespace HistProjTemplate
             counter--;
             if (questionAnswers.Count > 0 && counter >= 0)
             {
-                TextBlockQuestion.Text = questionAnswers[counter].question.ToString();
+                if (counter == 0)
+                {
+                    PrevB.IsEnabled = false;
+                }
+                NextB.IsEnabled = true;
+                TextBlockQuestion.Text = "Вопрос: " + questionAnswers[counter].question.ToString() + "\n" + "Ответ: " + questionAnswers[counter].answer.GetAnswer();
             }
             else
             {
@@ -237,18 +240,39 @@ namespace HistProjTemplate
 
         private void AddTestClick(object sender, RoutedEventArgs e) //кнопка возврата к предыдущему окну
         {
-            //Егор - сделать
-            MessageBox.Show(ImageSource);
-            AddedTest = new Test(TextBoxName.Text, ImageSource, questionAnswers);
-            MessageBox.Show(AddedTest.Name + "\n" + AddedTest.AllQuestionsAnswers[0].question + "\n"
-                + AddedTest.AllQuestionsAnswers[0].answer.ToString() + "\n" + AddedTest.Source);
-            // AddedTest = ... //эта штука возвращает добавленный тест предыдущему окну
-            this.DialogResult = true;
+            if (string.IsNullOrEmpty(TextBoxName.Text))
+            {
+                MessageBox.Show("Введите название");
+            }
+            else
+            {
+                NameAdded = true;
+                if (QAdded == false)
+                {
+                    MessageBox.Show("Добавьте файл с вопросами");
+                }
+                else
+                {
+                    if (MapAdded == false)
+                    {
+                        MessageBox.Show("Добавьте карту к данному тексту");
+                    }
+                    else
+                    {
+                        //MessageBox.Show(ImageSource);
+                        AddedTest = new Test(TextBoxName.Text, ImageSource, questionAnswers);
+                        //MessageBox.Show(AddedTest.Name + "\n" + AddedTest.AllQuestionsAnswers[0].question + "\n"
+                        //    + AddedTest.AllQuestionsAnswers[0].answer.ToString() + "\n" + AddedTest.Source);
+                        this.DialogResult = true;
+                    }
+                }
+            }           
         }
 
         private void GobBackClick(object sender, RoutedEventArgs e) //назад
         {
             this.DialogResult = false;
         }
+
     }
 }

@@ -282,6 +282,7 @@ namespace HistProjTemplate
                 AnswerBox.Text = UserAnswers[n];
             }           
         }
+        //TO DO: убрать из всех ответов юзера пробелы
         private void EndTestClick(object sender, RoutedEventArgs e)
         {
             UserAnswers[CurQNumber] = AnswerBox.Text;

@@ -28,7 +28,12 @@ namespace HistProjTemplate
         public AddTest()
         {
             InitializeComponent();
+            TestView.SelectedItem = null;
             Sections = (List<Sect>)Deserialization();
+            if (Sections == null)
+            {
+                Sections = new List<Sect>();
+            }
             foreach (Sect s in Sections)
             {
                 SectBox.Items.Add(s.ToString());
@@ -63,8 +68,15 @@ namespace HistProjTemplate
             object obj = new object();
             using (FileStream fs = new FileStream("sections.dat", FileMode.OpenOrCreate))
             {
-                obj = formatter.Deserialize(fs);
-                return obj;
+                if (fs.Length > 0)
+                {
+                    obj = formatter.Deserialize(fs);
+                    return obj;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -73,6 +85,10 @@ namespace HistProjTemplate
             if (SectBox.SelectedItem != null)
             {
                 Sections = (List<Sect>)Deserialization();
+                if (Sections == null)
+                {
+                    Sections = new List<Sect>();
+                }
                 string SectName = SectBox.SelectedItem.ToString();
                 Sect s = GetSectByName(SectName);
                 s.AddTest(test);
@@ -256,6 +272,10 @@ namespace HistProjTemplate
         public void RemoveTestByUser(string SectName, string TestName)  //удаление теста из раздела с известным названием
         {
             Sections = (List<Sect>)Deserialization();
+            if (Sections == null)
+            {
+                Sections = new List<Sect>();
+            }
             Sect sect = null;
             for (int i = 0; i < Sections.Count; i++)
             {

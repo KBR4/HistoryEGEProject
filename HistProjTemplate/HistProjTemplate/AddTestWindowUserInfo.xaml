@@ -5,18 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
-        Title="AddTestWindowUserInfo" Height="450" Width="800">
-    <StackPanel>
-        <TextBlock> Название </TextBlock>
-        <TextBox x:Name="TextBoxName"> Здесь юзер пишет название </TextBox>
-        <Button Click="AddMapClick">Картинку</Button>
-        <Label> Сюда помещается название (только название, без остального пути) выбранного файла </Label>
-        <Image x:Name="PreviewIMG" Height="100" Width="100"> </Image>
-        <Button Click="AddTXTFileClick"> Добавить файл с вопросами </Button>
-        <TextBlock x:Name="TextBlockQuestion"> Сюда помещаются выгруженные из тхт файла вопросы </TextBlock>
-        <Button Click="NextQClick"> Следующий вопрос </Button>
-        <Button Click="PrevQClick"> Предыдущий вопрос </Button>
-        <Button Click="GobBackClick"> Назад </Button>
-        <Button Click="AddTestClick"> Добавить тест - работает если написано название, добавлены вопросы и добавлена карта </Button>
+        Title="AddTestWindowUserInfo" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <StackPanel Orientation="Vertical">
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="FirstC"> </ColumnDefinition>
+                <ColumnDefinition x:Name="SecC"> </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="FirstR"></RowDefinition>
+                <RowDefinition x:Name="SecR"></RowDefinition>
+                <RowDefinition x:Name="ThirdR"></RowDefinition>
+            </Grid.RowDefinitions>
+        </Grid>
+        
+        <TextBlock Grid.Column="0" Grid.Row="0" FontFamily="Arial" FontSize="15" x:Name="NameBlock"> Название</TextBlock>
+        <TextBox Grid.Column="1" Grid.Row="0" FontFamily="Arial" FontSize="15" MaxLength="40" x:Name="TextBoxName">Здесь юзер пишет название</TextBox>
+        <Button Grid.Column="0" Grid.Row="1" FontFamily="Arial" FontSize="15" x:Name="AddMapB" Click="AddMapClick">Картинку</Button>
+        <Image Grid.Column="1" Grid.Row="1" x:Name="PreviewIMG" Height="100" Width="100"></Image>
+        <Button FontFamily="Arial" FontSize="15" x:Name="AddTXTFileB" Click="AddTXTFileClick">Добавить файл с вопросами</Button>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" FontSize="15" x:Name="TextBlockQuestion"> Здесь будут ваши вопросы </TextBlock>
+        <Button FontFamily="Arial" FontSize="15" x:Name="NextB" Click="NextQClick"> Следующий вопрос </Button>
+        <Button FontFamily="Arial" FontSize="15" x:Name="PrevB" Click="PrevQClick"> Предыдущий вопрос </Button>
+        <Button FontFamily="Arial" FontSize="15" x:Name="GoB" Click="GobBackClick"> Назад </Button>
+        <Button FontFamily="Arial" FontSize="15" x:Name="ReadyB"  Click="AddTestClick"> Добавить тест - работает если написано название, добавлены вопросы и добавлена карта </Button>
     </StackPanel>
 </Window>

@@ -28,8 +28,18 @@ namespace HistProjTemplate
         public AddWindow()
         {
             InitializeComponent();
+            SectionList.SelectedItem = null;
             Sections = (List<Sect>)Deserialization();
-            UpdateSectionList();
+
+            if (Sections == null)
+            {
+                Sections = new List<Sect>();
+            }
+
+            if (Sections.Count > 0)
+            {
+                UpdateSectionList();
+            }          
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -120,8 +130,15 @@ namespace HistProjTemplate
             object obj = new object();
             using (FileStream fs = new FileStream("sections.dat", FileMode.OpenOrCreate))
             {
-                obj = formatter.Deserialize(fs);
-                return obj;
+                if (fs.Length > 0)
+                {
+                    obj = formatter.Deserialize(fs);
+                    return obj;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -129,6 +146,10 @@ namespace HistProjTemplate
         public void AddSectByUser(string Name)
         {
             Sections = (List<Sect>)Deserialization();
+            if (Sections == null)
+            {
+                Sections = new List<Sect>();
+            }
             Sect newSect = new Sect(Name);
             Sections.Add(newSect);
             Serialization(Sections);
@@ -138,6 +159,10 @@ namespace HistProjTemplate
         public void RemoveSectByUser(string Name)
         {
             Sections = (List<Sect>)Deserialization();
+            if (Sections == null)
+            {
+                Sections = new List<Sect>();
+            }
             for (int i = 0; i < Sections.Count; i++)
             {
                 if (Sections[i].Name == Name)
@@ -151,11 +176,6 @@ namespace HistProjTemplate
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;
-        }
-
-        private void SectionList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

@@ -23,6 +23,7 @@ namespace HistProjTemplate
         public ResultsScreen()
         {
             InitializeComponent();
+            ResList.SelectedItem = null;
         }
         public ResultsScreen(Test CurrentTest, Statistics Stats, string[] UserAnswers, int Time)
         {

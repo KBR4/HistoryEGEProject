@@ -46,7 +46,7 @@ namespace HistProjTemplate
             #region
             //MainSelectionGrid = new Grid();
             //SelWindow.Content = MainSelectionGrid;
-            
+
             //RowDefinition Row = new RowDefinition();
             //Row.Height = new GridLength(2.0, GridUnitType.Star);
             //RowDefinition TitleRow = new RowDefinition();
@@ -61,7 +61,7 @@ namespace HistProjTemplate
             //MainSelectionGrid.ColumnDefinitions.Add(PreviewAndConfirmColumn);
             //MainSelectionGrid.RowDefinitions.Add(TitleRow);
             //MainSelectionGrid.RowDefinitions.Add(Row);
-            
+
             //MainSelectionGrid.ShowGridLines = true;
 
             ////Верхний ряд = ряд названий
@@ -108,7 +108,7 @@ namespace HistProjTemplate
 
             ////SectionList.Items.Add("First");
             ////SectionList.Items.Add("Second");
-            
+
             //Grid.SetRow(SectionList, 1);
             //Grid.SetColumn(SectionList, 0);
             //MainSelectionGrid.Children.Add(SectionList);
@@ -160,11 +160,16 @@ namespace HistProjTemplate
             //DockPanel.SetDock(ConfirmButton, Dock.Bottom);
             //PrevDock.Children.Add(ConfirmButton);
             #endregion
+            TestList.SelectedItem = null;
+            SectionList.SelectedItem = null;
             BinaryFormatter formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
             Sections = new List<Sect>();
             using (FileStream fs = new FileStream("sections.dat", FileMode.OpenOrCreate))
             {
-                Sections = (List<Sect>)formatter.Deserialize(fs);
+                if (fs.Length > 0)
+                {
+                    Sections = (List<Sect>)formatter.Deserialize(fs);
+                }               
             }
             foreach (Sect s in Sections)
             {
