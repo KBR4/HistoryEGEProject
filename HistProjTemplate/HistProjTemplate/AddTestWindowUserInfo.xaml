@@ -8,12 +8,12 @@
         Title="AddTestWindowUserInfo" Height="450" Width="800">
     <StackPanel>
         <TextBlock> Название </TextBlock>
-        <TextBox> Здесь юзер пишет название </TextBox>
+        <TextBox x:Name="TextBoxName"> Здесь юзер пишет название </TextBox>
         <Button Click="AddMapClick">Картинку</Button>
         <Label> Сюда помещается название (только название, без остального пути) выбранного файла </Label>
         <Image x:Name="PreviewIMG" Height="100" Width="100"> </Image>
         <Button Click="AddTXTFileClick"> Добавить файл с вопросами </Button>
-        <TextBlock> Сюда помещаются выгруженные из тхт файла вопросы </TextBlock>
+        <TextBlock x:Name="TextBlockQuestion"> Сюда помещаются выгруженные из тхт файла вопросы </TextBlock>
         <Button Click="NextQClick"> Следующий вопрос </Button>
         <Button Click="PrevQClick"> Предыдущий вопрос </Button>
         <Button Click="GobBackClick"> Назад </Button>
