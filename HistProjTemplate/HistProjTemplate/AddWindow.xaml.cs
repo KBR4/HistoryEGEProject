@@ -39,7 +39,11 @@ namespace HistProjTemplate
             if (Sections.Count > 0)
             {
                 UpdateSectionList();
-            }          
+            }
+            else
+            {
+                DelB.IsEnabled = false;
+            }
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -100,6 +104,14 @@ namespace HistProjTemplate
             foreach (Sect s in Sections)
             {
                 SectionList.Items.Add(s.ToString());
+            }
+            if (Sections.Count == 0)
+            {
+                DelB.IsEnabled = false;
+            }
+            else
+            {
+                DelB.IsEnabled = true;
             }
         }
 

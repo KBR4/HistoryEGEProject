@@ -11,9 +11,9 @@
             <TextBlock Margin="0,5,0,0" DockPanel.Dock="Top" FontFamily="Arial" FontSize="15" HorizontalAlignment="Center"> Разделы</TextBlock>
             <ListView DockPanel.Dock="Top" x:Name="SectionList" Height="300" FontFamily="Arial" FontSize="15" Margin="5"> </ListView>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
-                <Button Background="AliceBlue" Height="30" Width="70" FontFamily="Arial" FontSize="13" Margin="10,0,10,0" Click="Add_Click"> Добавить </Button>
-                <Button Background="AliceBlue" Height="30" Width="70" FontFamily="Arial" FontSize="13" Margin="10,0,10,0" Click="Remove_Click"> Удалить </Button>
-                <Button Background="AliceBlue" Height="30" Width="70" FontFamily="Arial" FontSize="13" Margin="10,0,0,0" Click="GoBack_Click"> Назад </Button>
+                <Button Background="AliceBlue" Height="30" Width="70" FontFamily="Arial" FontSize="13" Margin="10,0,10,0" Click="Add_Click" x:Name="AddB"> Добавить </Button>
+                <Button Background="AliceBlue" Height="30" Width="70" FontFamily="Arial" FontSize="13" Margin="10,0,10,0" Click="Remove_Click" x:Name="DelB"> Удалить </Button>
+                <Button Background="AliceBlue" Height="30" Width="70" FontFamily="Arial" FontSize="13" Margin="10,0,0,0" Click="GoBack_Click" x:Name="BackB"> Назад </Button>
             </StackPanel>
         </DockPanel>
         

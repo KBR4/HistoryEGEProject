@@ -34,7 +34,7 @@
             </StackPanel>
         </StackPanel>
         <StatusBar Background="AliceBlue">
-            <TextBox FontSize="13" FontFamily="Arial"> 2 </TextBox>
+            <TextBox FontSize="13" FontFamily="Arial">  </TextBox>
         </StatusBar>
     </StackPanel>
 </Window>

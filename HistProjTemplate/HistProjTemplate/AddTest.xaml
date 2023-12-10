@@ -17,9 +17,9 @@
 
             </ListView>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
-                <Button Background="AliceBlue" Height="30" Width="70" FontFamily="Arial" FontSize="13" Margin="10,10,10,0" Click="AddTest_Click">Добавить</Button>
-                <Button Background="AliceBlue" Height="30" Width="70" FontFamily="Arial" FontSize="13" Margin="10,10,10,0" Click="RemoveTest_Click">Удалить</Button>
-                <Button Background="AliceBlue" Margin="10,10,10,0" FontSize="15" FontFamily="Arial" Width="70" Height="30" Click="GoBack_Click"> Назад </Button>
+                <Button x:Name="AddB" Background="AliceBlue" Height="30" Width="70" FontFamily="Arial" FontSize="13" Margin="10,10,10,0" Click="AddTest_Click">Добавить</Button>
+                <Button x:Name="DelB" Background="AliceBlue" Height="30" Width="70" FontFamily="Arial" FontSize="13" Margin="10,10,10,0" Click="RemoveTest_Click">Удалить</Button>
+                <Button x:Name="BackB" Background="AliceBlue" Margin="10,10,10,0" FontSize="15" FontFamily="Arial" Width="70" Height="30" Click="GoBack_Click"> Назад </Button>
             </StackPanel>
         </StackPanel>
     </StackPanel>

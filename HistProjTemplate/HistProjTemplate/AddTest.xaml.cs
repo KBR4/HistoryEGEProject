@@ -29,9 +29,13 @@ namespace HistProjTemplate
         {
             InitializeComponent();
             TestView.SelectedItem = null;
+            SectBox.SelectedItem = null;
+            DelB.IsEnabled = false;
+            AddB.IsEnabled = false;
             Sections = (List<Sect>)Deserialization();
-            if (Sections == null)
+            if (Sections == null || Sections.Count == 0)
             {
+                MessageBox.Show("Сначала создайте разделы для тестов");
                 Sections = new List<Sect>();
             }
             foreach (Sect s in Sections)
@@ -219,12 +223,25 @@ namespace HistProjTemplate
         private void SectBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string Name = SectBox.SelectedItem.ToString();
-            Sect s = GetSectByName(Name);
-
-            TestView.Items.Clear();
-            foreach (Test t in s.Tests)
+            if (Name != null)
             {
-                TestView.Items.Add(t.Name);
+                AddB.IsEnabled = true;
+
+                Sect s = GetSectByName(Name);
+
+                TestView.Items.Clear();
+                foreach (Test t in s.Tests)
+                {
+                    TestView.Items.Add(t.Name);
+                }
+                if (s.Tests.Count > 0)
+                {
+                    DelB.IsEnabled = true;
+                }
+                else
+                {
+                    DelB.IsEnabled = false;
+                }
             }
         }
 

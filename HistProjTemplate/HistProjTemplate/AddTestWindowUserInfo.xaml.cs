@@ -123,7 +123,7 @@ namespace HistProjTemplate
             if (dialog.ShowDialog() == true)
             {
                 string pathToText = dialog.FileName;
-                using (StreamReader sr = new StreamReader(pathToText, Encoding.Default))
+                using (StreamReader sr = new StreamReader(pathToText))
                 {
                     string[] sQ = sr.ReadToEnd().Split(new string[] { "Q:" }, StringSplitOptions.RemoveEmptyEntries);
                     if (sQ.Length > 0)
@@ -133,7 +133,7 @@ namespace HistProjTemplate
                             string[] sAns = sQ[i].Split(new string[] { "A:" }, StringSplitOptions.RemoveEmptyEntries);
                             if (sAns.Length > 1)
                             {
-                                if (!string.IsNullOrEmpty(sAns[0]) && !string.IsNullOrEmpty(sAns[1]))
+                                if (!string.IsNullOrEmpty(sAns[0].Trim(new char[] { ' ', '\n', '\t', '\r' })) && !string.IsNullOrEmpty(sAns[1].Trim(new char[] { ' ', '\n', '\t', '\r' })))
                                 {
                                     string sq = sAns[0].Trim(new char[] { ' ', '\n', '\t', '\r' });
                                     Question q = new Question(sq);
@@ -142,7 +142,10 @@ namespace HistProjTemplate
                                     {
                                         string ss = sAns[j];
                                         ss = ss.Trim(new char[] { ' ', '\n', '\t', '\r' });
-                                        la.Add(ss);
+                                        if (!string.IsNullOrEmpty(ss))
+                                        {
+                                            la.Add(ss);
+                                        }                                     
                                     }
                                     Answer ans = new Answer(la);
                                     QuestionAnswer qa = new QuestionAnswer(q, ans);

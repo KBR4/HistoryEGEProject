@@ -420,7 +420,7 @@ namespace HistProjTemplate
                 MessageBox.Show("Сначала завершите текущий тест");
             }
         }
-        private void AddMap_Click(object sender, RoutedEventArgs e) //Добавление тест TO DO: СДЕЛАТЬ
+        private void AddMap_Click(object sender, RoutedEventArgs e) //Добавление тест
         {
             if (!IsTestActive)
             {
