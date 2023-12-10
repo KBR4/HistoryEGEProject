@@ -145,9 +145,14 @@ namespace HistProjTemplate
             EndTestButton.Content = "Закончить тест";
             EndTestButton.Click += EndTestClick;
 
-            QuestionAnswerPanel.Children.Add(QuestionBlock);
+            //QuestionAnswerPanel.Children.Add(QuestionBlock);
             QuestionAnswerPanel.Children.Add(AnswerBox);
-            
+
+            ScrollViewer scv = new ScrollViewer();
+            scv.Content = QuestionBlock;
+            QuestionAnswerPanel.Children.Add(scv);
+            scv.MaxHeight = 500;
+
             //Панель для кнопок
             ButtonPanel = new StackPanel();
             ButtonPanel.Orientation = Orientation.Horizontal;
