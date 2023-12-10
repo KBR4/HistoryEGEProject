@@ -32,6 +32,7 @@ namespace HistProjTemplate
         private bool NameAdded;
         private bool MapAdded;
         private bool QAdded;
+        private List<string> UsedNames;
         public AddTestWindowUserInfo()
         {
             InitializeComponent();
@@ -40,8 +41,25 @@ namespace HistProjTemplate
             QAdded = false;
             NextB.IsEnabled = false;
             PrevB.IsEnabled = false;
+            UsedNames = new List<string>();
         }
-
+        public AddTestWindowUserInfo(List<string> lsn)
+        {
+            InitializeComponent();
+            NameAdded = false;
+            MapAdded = false;
+            QAdded = false;
+            NextB.IsEnabled = false;
+            PrevB.IsEnabled = false;
+            if (lsn!= null && lsn.Count > 0)
+            {
+                UsedNames = lsn;
+            }
+            else
+            {
+                UsedNames = new List<string>();
+            }          
+        }
         // Сериализация вроде не нужна
         //public void Serialization(object obj)
         //{
@@ -253,25 +271,33 @@ namespace HistProjTemplate
             }
             else
             {
-                NameAdded = true;
-                if (QAdded == false)
+                string Name = TextBoxName.Text;
+                if (!UsedNames.Contains(Name))
                 {
-                    MessageBox.Show("Добавьте файл с вопросами");
-                }
-                else
-                {
-                    if (MapAdded == false)
+                    NameAdded = true;
+                    if (QAdded == false)
                     {
-                        MessageBox.Show("Добавьте карту к данному тексту");
+                        MessageBox.Show("Добавьте файл с вопросами");
                     }
                     else
                     {
-                        //MessageBox.Show(ImageSource);
-                        AddedTest = new Test(TextBoxName.Text, ImageSource, questionAnswers);
-                        //MessageBox.Show(AddedTest.Name + "\n" + AddedTest.AllQuestionsAnswers[0].question + "\n"
-                        //    + AddedTest.AllQuestionsAnswers[0].answer.ToString() + "\n" + AddedTest.Source);
-                        this.DialogResult = true;
+                        if (MapAdded == false)
+                        {
+                            MessageBox.Show("Добавьте карту к данному тексту");
+                        }
+                        else
+                        {
+                            //MessageBox.Show(ImageSource);
+                            AddedTest = new Test(TextBoxName.Text, ImageSource, questionAnswers);
+                            //MessageBox.Show(AddedTest.Name + "\n" + AddedTest.AllQuestionsAnswers[0].question + "\n"
+                            //    + AddedTest.AllQuestionsAnswers[0].answer.ToString() + "\n" + AddedTest.Source);
+                            this.DialogResult = true;
+                        }
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Тест с таким названием уже существует в данном разделе. Выберите другое название");
                 }
             }           
         }
