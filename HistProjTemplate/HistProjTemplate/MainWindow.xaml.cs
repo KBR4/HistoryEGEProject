@@ -361,9 +361,14 @@ namespace HistProjTemplate
                         TextBlockInfo.Text = "Вы выбрали тест " + CurrentTest.Name + ". Нажмите 'Начать тест' для прохождения работы.";
                     }                  
                 }
+                else
+                {
+                    TextBlockInfo.Text = "Для начала работы выберите тест в меню";
+                }
             }
             else //Если есть активный тест
             {
+                
                 //TO DO: переделать код ниже
                 ConfirmWindow cw = new ConfirmWindow("Вы не завершили текущий тест.Вы уверены, что хотите выбрать другой?");
                 if (cw.ShowDialog() == true)
@@ -383,7 +388,11 @@ namespace HistProjTemplate
                             TextBlockInfo.Text = "Вы выбрали тест " + CurrentTest.Name + ". Нажмите 'Начать тест' для прохождения работы.";
                         }
                     }
-                }
+                    else
+                    {
+                        TextBlockInfo.Text = "Для начала работы выберите тест в меню";
+                    }
+                }              
             }
         }
         private void MenuItem_Click(object sender, RoutedEventArgs e)   //Остается пустым
