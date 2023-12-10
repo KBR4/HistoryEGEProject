@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
-        Title="ЕГЭ по истории" Height="800" Width="800" WindowStartupLocation="CenterScreen">
+        Title="ЕГЭ по истории" Height="800" Width="800" WindowStartupLocation="CenterScreen"  Icon="Icon/Icon.jpg">
 
     <StackPanel>
         <Menu Background="AliceBlue" FontSize="16" FontFamily="Verdana" Padding="20" DockPanel.Dock="Top">

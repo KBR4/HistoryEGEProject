@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
-        Title="Добавление/удаление тестов" Height="450" Width="660" WindowStartupLocation="CenterScreen">
+        Title="Добавление/удаление тестов" Height="450" Width="660" WindowStartupLocation="CenterScreen" Icon="Icon/Icon.jpg">
     <StackPanel x:Name="MainPanel"  Orientation="Horizontal">
         <StackPanel x:Name="SectPanel" Margin="10" HorizontalAlignment="Left" Orientation="Vertical" Width="250">
             <TextBlock Margin="10" FontSize="15" FontFamily="15" HorizontalAlignment="Center"> Выбор раздела</TextBlock>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
-        Title="Результаты теста" Height="450" MaxHeight="600" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="Height">
+        Title="Результаты теста" Height="450" MaxHeight="600" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="Height"  Icon="Icon/Icon.jpg">
     <DockPanel x:Name="ResPanel" Margin="15">
         <ListView x:Name="ResList" MaxHeight="380" DockPanel.Dock="Top"  Margin="10, 10, 10, 10" FontSize="15" >
             <ListView.View>

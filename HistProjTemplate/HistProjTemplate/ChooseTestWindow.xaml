@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
-        Title="ЕГЭ по истории - выбор теста" WindowStyle="None" Height="450" Name="SelWindow" Width="800" WindowStartupLocation="CenterScreen">
+        Title="ЕГЭ по истории - выбор теста" WindowStyle="None" Height="450" Name="SelWindow" Width="800" WindowStartupLocation="CenterScreen"  Icon="Icon/Icon.jpg">
     <StackPanel x:Name="MainPanel" Margin="10" Orientation="Horizontal">
         <DockPanel x:Name="TitleAndList" Margin="10" Width="250">
             <TextBlock Margin="0,5,0,0" DockPanel.Dock="Top" FontFamily="Arial" FontSize="15" HorizontalAlignment="Center"> Разделы</TextBlock>
