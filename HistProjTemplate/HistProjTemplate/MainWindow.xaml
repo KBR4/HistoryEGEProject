@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
-        Title="ЕГЭ по истории" Height="800" Width="800" WindowState="Maximized">
+        Title="ЕГЭ по истории" Height="800" Width="800" WindowStartupLocation="CenterScreen">
 
-    <DockPanel>
+    <StackPanel>
         <Menu Background="AliceBlue" FontSize="16" FontFamily="Verdana" Padding="20" DockPanel.Dock="Top">
             <MenuItem Header="Начать тест" Click="StartClick"></MenuItem>
             <MenuItem Header="Выбрать тест" Click="OpenSelectionWindow"></MenuItem>
@@ -18,9 +18,23 @@
             <MenuItem Header="Настройки" Click="Settings"></MenuItem>
             <MenuItem Header="Выйти" Click ="Exit"/>
         </Menu>
-        <TextBlock x:Name="TextBlockInfo" DockPanel.Dock="Top" FontFamily="Arial" FontSize="25" HorizontalAlignment="Center" Padding="10"> </TextBlock>
-        <Grid x:Name="MainGrid">
-            
-        </Grid>
-    </DockPanel>
+        <TextBlock TextWrapping="Wrap" x:Name="TextBlockInfo" Margin="10" DockPanel.Dock="Top" FontFamily="Arial" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <Image x:Name="MapImage" Height="600" Width="350" Margin="20"></Image>
+            <StackPanel x:Name="QuestionAnswerPanel" Margin="20" Width="360">
+                <ScrollViewer Margin="10" Width="340" Height="420">
+                    <TextBlock Margin="5" TextWrapping="Wrap"  DockPanel.Dock="Top" x:Name="QuestionBlock" FontSize="15" FontFamily="Arial"></TextBlock>
+                </ScrollViewer>
+                <TextBox Margin="10" MaxLength="100" DockPanel.Dock="Top" x:Name="AnswerBox" FontSize="15" FontFamily="Arial"></TextBox>
+                <StackPanel DockPanel.Dock="Bottom" x:Name="ButtonPanel" Orientation="Horizontal">
+                    <Button Height="30" Width="150" Background="AliceBlue" x:Name="PrevQButton" Margin="20,10,10,10" FontSize="15" FontFamily="Arial" Click="PrevQClick">Предыдущий вопрос</Button>
+                    <Button Height="30" Width="150" Background="AliceBlue" x:Name="NextQButton" Margin="10" FontSize="15" FontFamily="Arial" Click="NextQClick">Следующий вопрос</Button>
+                </StackPanel>
+                <Button Height="30" Width="150"  DockPanel.Dock="Top" Background="AliceBlue" x:Name="EndTestButton" Margin="10" FontSize="15" FontFamily="Arial" Click="EndTestClick">Закончить тест</Button>
+            </StackPanel>
+        </StackPanel>
+        <StatusBar Background="AliceBlue">
+            <TextBox FontSize="13" FontFamily="Arial"> 2 </TextBox>
+        </StatusBar>
+    </StackPanel>
 </Window>

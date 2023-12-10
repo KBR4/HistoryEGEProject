@@ -42,166 +42,166 @@ namespace HistProjTemplate
         private string[] UserAnswers;           //ответы юзера. Выбран массив из-за удобства обращения по индексу
         private DispatcherTimer timer;          //таймер
         int TestTime;                           //время выполнения текущего теста
+
         //WPF компоненты текущего окна
-        //private Button StartTestButton;
-        private Image MapImage;
-        private TextBox AnswerBox;
-        private TextBlock QuestionBlock;
-        private StackPanel ButtonPanel;
-        private Button PrevQButton;
-        private Button NextQButton;
-        private StackPanel QuestionAnswerPanel;
-        private Button EndTestButton;
+        //private Image MapImage;
+        //private TextBox AnswerBox;
+        //private TextBlock QuestionBlock;
+        //private StackPanel ButtonPanel;
+        //private Button PrevQButton;
+        //private Button NextQButton;
+        //private StackPanel QuestionAnswerPanel;
+        //private Button EndTestButton;
         public MainWindow()
         {
             InitializeComponent();
+            //Внутри региона программное добавление компонентов в окно - не используется
+               #region
 
-            //Внутри региона программное добавление компонентов в окно
-            #region
+
+            //   RowDefinition Row = new RowDefinition();
+            //   ColumnDefinition MapColumn = new ColumnDefinition();
+            //   //ColumnDefinition ButtonColumn = new ColumnDefinition();
+            //   ColumnDefinition QuestionColumn = new ColumnDefinition();
+            //   MapColumn.Width = new GridLength(0.9, GridUnitType.Star);
+            //   //ButtonColumn.Width = new GridLength(0.15, GridUnitType.Star);
+            //   QuestionColumn.Width = new GridLength(1.1, GridUnitType.Star);
+
+            //   MainGrid.RowDefinitions.Add(Row);
+            //   MainGrid.ColumnDefinitions.Add(MapColumn);
+            //   //MainGrid.ColumnDefinitions.Add(ButtonColumn);
+            //   MainGrid.ColumnDefinitions.Add(QuestionColumn);
+            //   MainGrid.VerticalAlignment = VerticalAlignment.Center;
+            //   MainGrid.HorizontalAlignment = HorizontalAlignment.Center;
+            //   //MainGrid.ShowGridLines = true;
+
+            //   //StartTestButton = new Button();
+            //   //StartTestButton.Height = 75;
+            //   //StartTestButton.Width = 100;
+            //   //StartTestButton.Visibility = Visibility.Hidden;
+            //   //StartTestButton.HorizontalAlignment = HorizontalAlignment.Right;
+            //   //StartTestButton.VerticalAlignment = VerticalAlignment.Top;
+
+            //   //StartTestButton.Background = new SolidColorBrush(Colors.LightBlue);
+            //   //StartTestButton.FontSize = 15;
+            //   //StartTestButton.FontFamily = new FontFamily("Arial");
+            //   //StartTestButton.VerticalContentAlignment = VerticalAlignment.Center;
+
+            //   //StartTestButton.Content = "Начать тест";
+            //   //StartTestButton.Click += StartClick;
+            //   //Grid.SetRow(StartTestButton, 0);
+            //   //Grid.SetColumn(StartTestButton, 1);
+            //   //MainGrid.Children.Add(StartTestButton);
+
+            //   MapImage = new Image();
+            //   Grid.SetRow(MapImage, 0);
+            //   Grid.SetColumn(MapImage, 0);
+            //   MainGrid.Children.Add(MapImage);
+               
+            //   MapImage.Margin = new Thickness(20, 20, 20, 20);
+
+            //   QuestionAnswerPanel = new StackPanel();
+            //   QuestionAnswerPanel.VerticalAlignment = VerticalAlignment.Top;
+            //   QuestionAnswerPanel.HorizontalAlignment = HorizontalAlignment.Center;
+            //   QuestionAnswerPanel.Orientation = Orientation.Vertical;
+
+            //   QuestionBlock = new TextBlock();
+            //   QuestionBlock.Margin = new Thickness(0, 15, 0, 15);
+            //   QuestionBlock.Padding = new Thickness(5, 5, 5, 5);
+            //   QuestionBlock.Background = new SolidColorBrush(Colors.AliceBlue);
+            //   QuestionBlock.FontSize = 20;
+            //   QuestionBlock.TextAlignment = TextAlignment.Left;
+            //   QuestionBlock.TextWrapping = TextWrapping.Wrap;
+            //   QuestionBlock.FontFamily = new FontFamily("Arial");
+            //   QuestionBlock.HorizontalAlignment = HorizontalAlignment.Left;
+            //   QuestionBlock.MinWidth = 300;
+            //   QuestionBlock.MaxWidth = 550;
+            //   QuestionBlock.VerticalAlignment = VerticalAlignment.Top;
+
+            //   AnswerBox = new TextBox();
+            //   AnswerBox.MaxLength = 30;   //Макс длина ответа
+            //   AnswerBox.FontFamily = new FontFamily("Arial");
+            //   AnswerBox.FontSize = 15;
+            //   AnswerBox.TextAlignment = TextAlignment.Left;
+            //   //AnswerBox.Width = 350;
+            //   //AnswerBox.Height = 25;
+            //   AnswerBox.Margin = new Thickness(0, 0, 0, 15);
+            //   AnswerBox.Width = QuestionBlock.Width;
+            //   AnswerBox.MinWidth = 300;
+            //   AnswerBox.MaxWidth = 550;
+            //   AnswerBox.HorizontalAlignment = HorizontalAlignment.Left;
+            //   AnswerBox.VerticalAlignment = VerticalAlignment.Top;
+
+            //   NextQButton = new Button();
+            //   NextQButton.Content = "Следующий вопрос";  //>>
+            //   NextQButton.Click += NextQClick;
+            //   PrevQButton = new Button();
+            //   PrevQButton.Content = "Предыдущий вопрос"; //<<
+            //   PrevQButton.Click += PrevQClick;
+            //   EndTestButton = new Button();
+            //   EndTestButton.Content = "Закончить тест";
+            //   EndTestButton.Click += EndTestClick;
+
+            //   //QuestionAnswerPanel.Children.Add(QuestionBlock);
+            //   QuestionAnswerPanel.Children.Add(AnswerBox);
+
+            //   ScrollViewer scv = new ScrollViewer();
+            //   scv.Content = QuestionBlock;
+            //   QuestionAnswerPanel.Children.Add(scv);
+            //   scv.MaxHeight = 500;
+
+            //   //Панель для кнопок
+            //   ButtonPanel = new StackPanel();
+            //   ButtonPanel.Orientation = Orientation.Horizontal;
+            //   ButtonPanel.HorizontalAlignment = HorizontalAlignment.Center;
+            //   ButtonPanel.MinWidth = 300;
+            //   //ButtonPanel.Width = 550;
+            //// чтобы переместить панель кнопок в центр пишем параметр Center, вниз - Bottom
+            //   ButtonPanel.VerticalAlignment = VerticalAlignment.Bottom; 
+            //   //QuestionAnswerPanel.Children.Add(ButtonPanel);
+
+            //   ButtonPanel.Children.Add(PrevQButton);
+            //   ButtonPanel.Children.Add(NextQButton);           
+            //   ButtonPanel.Children.Add(EndTestButton);
+
+            //   ButtonPanel.Margin = new Thickness(20, 0, 20, 20);
+            //   NextQButton.Padding = new Thickness(5, 5, 5, 5);
+            //   PrevQButton.Padding = new Thickness(5, 5, 5, 5);
+            //   EndTestButton.Padding = new Thickness(5, 5, 5, 5);
+
+            //   NextQButton.Margin = new Thickness(30, 0, 30, 0);
+            //   PrevQButton.Margin = new Thickness(0, 0, 30, 0);
+            //   EndTestButton.Margin = new Thickness(30, 0, 30, 0);
+            //   //QuestionAnswerPanel.Children.Add(NextQButton);
+            //   //QuestionAnswerPanel.Children.Add(PrevQButton);
+            //   //QuestionAnswerPanel.Children.Add(EndTestButton);
+            //   NextQButton.Background = new SolidColorBrush(Colors.AliceBlue);
+            //   PrevQButton.Background = new SolidColorBrush(Colors.AliceBlue);
+            //   EndTestButton.Background = new SolidColorBrush(Colors.AliceBlue);
+
+            //   Grid.SetRow(QuestionAnswerPanel, 0);
+            //   Grid.SetColumn(QuestionAnswerPanel, 1);
+            //   Grid.SetRow(ButtonPanel, 0);
+            //   Grid.SetColumn(ButtonPanel, 1);
+            //   MainGrid.Children.Add(QuestionAnswerPanel);
+            //   MainGrid.Children.Add(ButtonPanel);
+            
+
+            //   //Графическое оформление - свойства
+            //   TextBlockInfo.Margin = new Thickness(15, 15, 15, 15);
+            //   MainGrid.Margin = new Thickness(10, 0, 10, 10);
+            //   TextBlockInfo.Background = new SolidColorBrush(Colors.AliceBlue);
+
+            ////ImageBrush bgbrush = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/LightBrownBackground.jpg")));
+            ////this.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/HistProjTemplate;component/Images/LightBrownBackground.jpg")));
+            #endregion
+
             IsTestChosen = false;
             IsTestActive = false;
-            TextBlockInfo.Text = "Для начала работы выберите тест в меню";
-
-            RowDefinition Row = new RowDefinition();
-            ColumnDefinition MapColumn = new ColumnDefinition();
-            //ColumnDefinition ButtonColumn = new ColumnDefinition();
-            ColumnDefinition QuestionColumn = new ColumnDefinition();
-            MapColumn.Width = new GridLength(0.9, GridUnitType.Star);
-            //ButtonColumn.Width = new GridLength(0.15, GridUnitType.Star);
-            QuestionColumn.Width = new GridLength(1.1, GridUnitType.Star);
-            
-            MainGrid.RowDefinitions.Add(Row);
-            MainGrid.ColumnDefinitions.Add(MapColumn);
-            //MainGrid.ColumnDefinitions.Add(ButtonColumn);
-            MainGrid.ColumnDefinitions.Add(QuestionColumn);
-            MainGrid.VerticalAlignment = VerticalAlignment.Center;
-            MainGrid.HorizontalAlignment = HorizontalAlignment.Center;
-            //MainGrid.ShowGridLines = true;
-
-            //StartTestButton = new Button();
-            //StartTestButton.Height = 75;
-            //StartTestButton.Width = 100;
-            //StartTestButton.Visibility = Visibility.Hidden;
-            //StartTestButton.HorizontalAlignment = HorizontalAlignment.Right;
-            //StartTestButton.VerticalAlignment = VerticalAlignment.Top;
-
-            //StartTestButton.Background = new SolidColorBrush(Colors.LightBlue);
-            //StartTestButton.FontSize = 15;
-            //StartTestButton.FontFamily = new FontFamily("Arial");
-            //StartTestButton.VerticalContentAlignment = VerticalAlignment.Center;
-
-            //StartTestButton.Content = "Начать тест";
-            //StartTestButton.Click += StartClick;
-            //Grid.SetRow(StartTestButton, 0);
-            //Grid.SetColumn(StartTestButton, 1);
-            //MainGrid.Children.Add(StartTestButton);
-
-            MapImage = new Image();
-            Grid.SetRow(MapImage, 0);
-            Grid.SetColumn(MapImage, 0);
-            MainGrid.Children.Add(MapImage);
             MapImage.Visibility = Visibility.Hidden;
-            MapImage.Margin = new Thickness(20, 20, 20, 20);
-
-            QuestionAnswerPanel = new StackPanel();
-            QuestionAnswerPanel.VerticalAlignment = VerticalAlignment.Top;
-            QuestionAnswerPanel.HorizontalAlignment = HorizontalAlignment.Center;
-            QuestionAnswerPanel.Orientation = Orientation.Vertical;
-
-            QuestionBlock = new TextBlock();
-            QuestionBlock.Margin = new Thickness(0, 15, 0, 15);
-            QuestionBlock.Padding = new Thickness(5, 5, 5, 5);
-            QuestionBlock.Background = new SolidColorBrush(Colors.AliceBlue);
-            QuestionBlock.FontSize = 20;
-            QuestionBlock.TextAlignment = TextAlignment.Left;
-            QuestionBlock.TextWrapping = TextWrapping.Wrap;
-            QuestionBlock.FontFamily = new FontFamily("Arial");
-            QuestionBlock.HorizontalAlignment = HorizontalAlignment.Left;
-            QuestionBlock.MinWidth = 300;
-            QuestionBlock.MaxWidth = 550;
-            QuestionBlock.VerticalAlignment = VerticalAlignment.Top;
-
-            AnswerBox = new TextBox();
-            AnswerBox.MaxLength = 30;   //Макс длина ответа
-            AnswerBox.FontFamily = new FontFamily("Arial");
-            AnswerBox.FontSize = 15;
-            AnswerBox.TextAlignment = TextAlignment.Left;
-            //AnswerBox.Width = 350;
-            //AnswerBox.Height = 25;
-            AnswerBox.Margin = new Thickness(0, 0, 0, 15);
-            AnswerBox.Width = QuestionBlock.Width;
-            AnswerBox.MinWidth = 300;
-            AnswerBox.MaxWidth = 550;
-            AnswerBox.HorizontalAlignment = HorizontalAlignment.Left;
-            AnswerBox.VerticalAlignment = VerticalAlignment.Top;
-
-            NextQButton = new Button();
-            NextQButton.Content = "Следующий вопрос";  //>>
-            NextQButton.Click += NextQClick;
-            PrevQButton = new Button();
-            PrevQButton.Content = "Предыдущий вопрос"; //<<
-            PrevQButton.Click += PrevQClick;
-            EndTestButton = new Button();
-            EndTestButton.Content = "Закончить тест";
-            EndTestButton.Click += EndTestClick;
-
-            //QuestionAnswerPanel.Children.Add(QuestionBlock);
-            QuestionAnswerPanel.Children.Add(AnswerBox);
-
-            ScrollViewer scv = new ScrollViewer();
-            scv.Content = QuestionBlock;
-            QuestionAnswerPanel.Children.Add(scv);
-            scv.MaxHeight = 500;
-
-            //Панель для кнопок
-            ButtonPanel = new StackPanel();
-            ButtonPanel.Orientation = Orientation.Horizontal;
-            ButtonPanel.HorizontalAlignment = HorizontalAlignment.Center;
-            ButtonPanel.MinWidth = 300;
-            //ButtonPanel.Width = 550;
-         // чтобы переместить панель кнопок в центр пишем параметр Center, вниз - Bottom
-            ButtonPanel.VerticalAlignment = VerticalAlignment.Bottom; 
-            //QuestionAnswerPanel.Children.Add(ButtonPanel);
-
-            ButtonPanel.Children.Add(PrevQButton);
-            ButtonPanel.Children.Add(NextQButton);           
-            ButtonPanel.Children.Add(EndTestButton);
-
-            ButtonPanel.Margin = new Thickness(20, 0, 20, 20);
-            NextQButton.Padding = new Thickness(5, 5, 5, 5);
-            PrevQButton.Padding = new Thickness(5, 5, 5, 5);
-            EndTestButton.Padding = new Thickness(5, 5, 5, 5);
-
-            NextQButton.Margin = new Thickness(30, 0, 30, 0);
-            PrevQButton.Margin = new Thickness(0, 0, 30, 0);
-            EndTestButton.Margin = new Thickness(30, 0, 30, 0);
-            //QuestionAnswerPanel.Children.Add(NextQButton);
-            //QuestionAnswerPanel.Children.Add(PrevQButton);
-            //QuestionAnswerPanel.Children.Add(EndTestButton);
-            NextQButton.Background = new SolidColorBrush(Colors.AliceBlue);
-            PrevQButton.Background = new SolidColorBrush(Colors.AliceBlue);
-            EndTestButton.Background = new SolidColorBrush(Colors.AliceBlue);
-
-            Grid.SetRow(QuestionAnswerPanel, 0);
-            Grid.SetColumn(QuestionAnswerPanel, 1);
-            Grid.SetRow(ButtonPanel, 0);
-            Grid.SetColumn(ButtonPanel, 1);
-            MainGrid.Children.Add(QuestionAnswerPanel);
-            MainGrid.Children.Add(ButtonPanel);
             QuestionAnswerPanel.Visibility = Visibility.Hidden;
             ButtonPanel.Visibility = Visibility.Hidden;
-
-            //Графическое оформление - свойства
-            TextBlockInfo.Margin = new Thickness(15, 15, 15, 15);
-            MainGrid.Margin = new Thickness(10, 0, 10, 10);
-            TextBlockInfo.Background = new SolidColorBrush(Colors.AliceBlue);
-
-            //ImageBrush bgbrush = new ImageBrush(new BitmapImage(new Uri(BaseUriHelper.GetBaseUri(this), "Images/LightBrownBackground.jpg")));
-            //this.Background = new ImageBrush(new BitmapImage(new Uri(@"pack://application:,,,/HistProjTemplate;component/Images/LightBrownBackground.jpg")));
-
-
-
-            #endregion
+            TextBlockInfo.Text = "Для начала работы выберите тест в меню";
         }
         private void StartClick(object sender, RoutedEventArgs e)  //Кнопка начала теста
         {
@@ -419,41 +419,6 @@ namespace HistProjTemplate
             {
                 MessageBox.Show("Сначала завершите текущий тест");
             }
-
-            //Не знаю что это снизу
-
-        //    CreateSectWindow createSect = new CreateSectWindow();
-        //    if (createSect.ShowDialog() == true)
-        //    {
-        //        IsTestChosen = true;
-        //        //StartTestButton.Visibility = Visibility.Visible;
-        //        TextBlockInfo.Text = "Вы выбрали тест " + CurrentTest.Name + ". Нажмите 'Начать тест' для прохождения работы.";
-        //    }
-        //    //Добавить раздел - название
-        //    // пробуем загрузить изображение из вне
-        //    #region
-        //    BitmapImage bitmap = new BitmapImage();
-        //    OpenFileDialog dialog = new OpenFileDialog();
-        //    MapImage.Stretch = Stretch.Fill;
-        //    dialog.Title = "Выберите изображение";
-
-        //    //фильтр для того, чтобы выбирать только из фото
-        //    dialog.Filter =
-        //"Image files|*.bmp;*.jpg;*.gif;*.png;*.tif|All files|*.*";
-        //    dialog.FilterIndex = 1;
-
-        //    if (dialog.ShowDialog() == true)
-        //    {
-        //        bitmap.UriSource = new Uri(dialog.FileName);
-        //        string pathToImages = Assembly.GetExecutingAssembly().Location;
-
-        //        //задание абсолютного пути до папки с ресурсами Images 
-        //        pathToImages = pathToImages.Remove(pathToImages.Length - 30);
-        //        pathToImages += "Images";
-        //        MessageBox.Show($"File name: {dialog.FileName} \nYour path: \n{pathToImages}");
-        //        File.Copy(dialog.FileName, System.IO.Path.Combine(pathToImages, dialog.SafeFileName));
-        //    }
-        //    #endregion
         }
         private void AddMap_Click(object sender, RoutedEventArgs e) //Добавление тест TO DO: СДЕЛАТЬ
         {

@@ -228,7 +228,7 @@ namespace HistProjTemplate
             }
             int NumbTests = CurSection.Tests.Count();
             NumbTestsBlock.Text = "Всего тестов в разделе: " + NumbTests;
-            NumbQuestionsBlock.Text = "Всего вопросов в разделе: ";
+            NumbQuestionsBlock.Text = "Всего вопросов в тесте: ";
         }
 
         private void TestList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -247,7 +247,7 @@ namespace HistProjTemplate
                     string imgsource = CurTest.Source;
                     PreviewIMG.Source = new BitmapImage(new Uri(imgsource, UriKind.RelativeOrAbsolute));
                     int QuestionNumb = CurTest.AllQuestionsAnswers.Count();
-                    NumbQuestionsBlock.Text = "Всего вопросов в разделе: " + QuestionNumb;
+                    NumbQuestionsBlock.Text = "Всего вопросов в тесте: " + QuestionNumb;
                 }
                 else
                 {
