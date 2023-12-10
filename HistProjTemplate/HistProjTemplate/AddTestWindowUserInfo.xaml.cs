@@ -133,7 +133,7 @@ namespace HistProjTemplate
                             string[] sAns = sQ[i].Split(new string[] { "A:" }, StringSplitOptions.RemoveEmptyEntries);
                             if (sAns.Length > 1)
                             {
-                                if (!string.IsNullOrEmpty(sQ[0]) && !string.IsNullOrEmpty(sQ[1]))
+                                if (!string.IsNullOrEmpty(sAns[0]) && !string.IsNullOrEmpty(sAns[1]))
                                 {
                                     string sq = sAns[0].Trim(new char[] { ' ', '\n', '\t', '\r' });
                                     Question q = new Question(sq);
@@ -172,9 +172,13 @@ namespace HistProjTemplate
             counter = 0;
             if (questionAnswers != null && questionAnswers.Count != 0)
             {
-                if (questionAnswers.Count > 0)
+                if (questionAnswers.Count > 1)
                 {
                     NextB.IsEnabled = true;
+                }
+                else
+                {
+                    NextB.IsEnabled = false;
                 }
                 PrevB.IsEnabled = false;
                 TextBlockQuestion.Text = "Вопрос: " + questionAnswers[0].question.ToString() + "\n"+ "Ответ: " + questionAnswers[0].answer.GetAnswer();
