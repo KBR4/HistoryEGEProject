@@ -115,7 +115,21 @@ namespace HistProjTemplate
             if (dialog.ShowDialog() == true)
             {
                 string pathToText = dialog.FileName;
-                using (StreamReader sr = new StreamReader(pathToText))
+                //var encoding = GetEncoding(pathToText);               
+
+                Stream fs = File.OpenRead(pathToText);
+                var encoding = DetectFileEncoding(fs);
+                var enc2 = Encoding.GetEncoding(1251);
+                bool bfl = false;
+                if (encoding != "utf-8")
+                {
+                    bfl = true;
+                }
+                if (bfl == false)
+                {
+                    enc2 = Encoding.GetEncoding(encoding);
+                }
+                using (StreamReader sr = new StreamReader(pathToText, enc2))
                 {
                     string[] sQ = sr.ReadToEnd().Split(new string[] { "Q:" }, StringSplitOptions.RemoveEmptyEntries);
                     if (sQ.Length > 0)
@@ -185,8 +199,34 @@ namespace HistProjTemplate
             QAdded = true;
         }
 
-        
 
+
+        public string DetectFileEncoding(Stream fileStream)
+        {
+            var Utf8EncodingVerifier = Encoding.GetEncoding("utf-8", new EncoderExceptionFallback(), new DecoderExceptionFallback());
+            using (var reader = new StreamReader(fileStream, Utf8EncodingVerifier,
+            detectEncodingFromByteOrderMarks: true, leaveOpen: true, bufferSize: 1024))
+            {
+                string detectedEncoding;
+                try
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                    }
+                    detectedEncoding = reader.CurrentEncoding.BodyName;
+                }
+                catch (Exception e)
+                {
+                    // Failed to decode the file using the BOM/UT8.
+                    // Assume it's local ANSI
+                    detectedEncoding = "ISO-8859-1";
+                }
+                // Rewind the stream
+                fileStream.Seek(0, SeekOrigin.Begin);
+                return detectedEncoding;
+            }
+        }      
         private void NextQClick(object sender, RoutedEventArgs e) //к следующему вопросу (вопросы подгружены из тхт)
         {
             counter++;
@@ -280,5 +320,5 @@ namespace HistProjTemplate
             this.DialogResult = false;
         }
 
-    }
+    }   
 }
