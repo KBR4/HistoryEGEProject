@@ -29,14 +29,12 @@ namespace HistProjTemplate
         private string ImageSource;
         private List<QuestionAnswer> questionAnswers;
         private int counter;
-        private bool NameAdded;
         private bool MapAdded;
         private bool QAdded;
         private List<string> UsedNames;
         public AddTestWindowUserInfo()
         {
             InitializeComponent();
-            NameAdded = false;
             MapAdded = false;
             QAdded = false;
             NextB.IsEnabled = false;
@@ -46,7 +44,6 @@ namespace HistProjTemplate
         public AddTestWindowUserInfo(List<string> lsn)
         {
             InitializeComponent();
-            NameAdded = false;
             MapAdded = false;
             QAdded = false;
             NextB.IsEnabled = false;
@@ -60,41 +57,18 @@ namespace HistProjTemplate
                 UsedNames = new List<string>();
             }          
         }
-        // Сериализация вроде не нужна
-        //public void Serialization(object obj)
-        //{
-        //    BinaryFormatter formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
-        //    using (FileStream fs = new FileStream("sections.dat", FileMode.OpenOrCreate))
-        //    {
-        //        formatter.Serialize(fs, obj);
-        //    }
-        //}
-
-        //public object Deserialization()
-        //{
-        //    BinaryFormatter formatter = new BinaryFormatter(); // создаем объект BinaryFormatter
-        //    object obj = new object();
-        //    using (FileStream fs = new FileStream("sections.dat", FileMode.OpenOrCreate))
-        //    {
-        //        if (fs.Length > 0)
-        //        {
-        //            obj = formatter.Deserialize(fs);
-        //            return obj;
-        //        }
-        //        else
-        //        {
-        //            return null;
-        //        }
-        //    }
-        //}
 
         private void AddMapClick(object sender, RoutedEventArgs e) //добавить картинку, отправить ее в имагес, показать превью на экране
         {
-            ImageSource = GetImageSource(TextBoxName.Text);
-            MessageBox.Show(ImageSource);
-            PreviewIMG.Source = new BitmapImage(new Uri(ImageSource, UriKind.RelativeOrAbsolute));
-            PreviewIMG.Visibility = Visibility.Visible;
-            MapAdded = true;
+            string checksource = GetImageSource(TextBoxName.Text);           
+            //MessageBox.Show(ImageSource);
+            if (checksource != null)
+            {
+                ImageSource = checksource;
+                PreviewIMG.Source = new BitmapImage(new Uri(ImageSource, UriKind.RelativeOrAbsolute));
+                PreviewIMG.Visibility = Visibility.Visible;
+                MapAdded = true;
+            }
         }
         public string GetImageSource(string NameTest)
         {
@@ -124,7 +98,7 @@ namespace HistProjTemplate
 
                 return pathToImages;     // абсолютный путь до изображения 
             }
-            return "ОШИБКА";  // априори обычно здесь нет ошибки
+            return null;  // априори обычно здесь нет ошибки
                               // и пользователь выбирает какую-то картинку, либо можно вернуть null
         }
 
@@ -274,7 +248,6 @@ namespace HistProjTemplate
                 string Name = TextBoxName.Text;
                 if (!UsedNames.Contains(Name))
                 {
-                    NameAdded = true;
                     if (QAdded == false)
                     {
                         MessageBox.Show("Добавьте файл с вопросами");
