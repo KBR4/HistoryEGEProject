@@ -27,10 +27,6 @@ namespace HistProjTemplate
         }
         public ResultsScreen(Test CurrentTest, Statistics Stats, string[] UserAnswers, int Time)
         {
-            //if (Time > 60*60*24)
-            //{
-            //    Time = 0;
-            //}
             TimeSpan t = TimeSpan.FromSeconds(Time);
             string timestring = string.Format("{0:D2}:{1:D2}:{2:D2}",
                 t.Hours,

@@ -368,28 +368,32 @@ namespace HistProjTemplate
             }
             else //Если есть активный тест
             {
-                
-                //TO DO: переделать код ниже
                 ConfirmWindow cw = new ConfirmWindow("Вы не завершили текущий тест.Вы уверены, что хотите выбрать другой?");
-                if (cw.ShowDialog() == true)
+                if (cw.ShowDialog() == true)    //Если юзер ответил да - прерываем текущий тест, даем ему выбрать новый
                 {
-                    IsTestActive = false;
-                    QuestionAnswerPanel.Visibility = Visibility.Hidden;
+                    IsTestActive = false;                               //активный тест прерывается, даже если юзер потом нажмет назад
+                    QuestionAnswerPanel.Visibility = Visibility.Hidden; //скрываем панели вопросов, картинку
                     ButtonPanel.Visibility = Visibility.Hidden;
                     MapImage.Visibility = Visibility.Hidden;
 
-                    ChooseTestWindow CTW = new ChooseTestWindow();
-                    if (CTW.ShowDialog() == true)
+                    ChooseTestWindow CTW = new ChooseTestWindow();      //окно выбора нового теста
+                    if (CTW.ShowDialog() == true)                       //если тест был выбран (выход по кнопке выбрать)
                     {
-                        if (CTW.ChosenTest != null)
+                        if (CTW.ChosenTest != null)                     //проверка на всякий случай
                         {
-                            CurrentTest = CTW.ChosenTest;
+                            CurrentTest = CTW.ChosenTest;               //тест выбран - готов к началу
                             IsTestChosen = true;
                             TextBlockInfo.Text = "Вы выбрали тест " + CurrentTest.Name + ". Нажмите 'Начать тест' для прохождения работы.";
                         }
+                        else                                        //сюда обычно не попадаем
+                        {
+                            IsTestChosen = false;
+                            MessageBox.Show("Произошла ошибка. Перезапустите программу");
+                        }
                     }
-                    else
+                    else                                        //если вышли из экрана выбора кнопкой назад - тест не выбран, переход к начальному состоянию
                     {
+                        IsTestChosen = false;
                         TextBlockInfo.Text = "Для начала работы выберите тест в меню";
                     }
                 }              
