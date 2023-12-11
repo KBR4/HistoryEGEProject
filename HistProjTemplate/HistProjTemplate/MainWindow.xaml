@@ -15,7 +15,7 @@
                 <MenuItem Header="Раздел" Click="AddSection_Click"></MenuItem>
                 <MenuItem Header="Тест" Click="AddMap_Click" ></MenuItem>
             </MenuItem>
-            <MenuItem Header="Настройки" Click="Settings"></MenuItem>
+            
             <MenuItem Header="Выйти" Click ="Exit"/>
         </Menu>
         <TextBlock TextWrapping="Wrap" x:Name="TextBlockInfo" Margin="10" DockPanel.Dock="Top" FontFamily="Arial" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
