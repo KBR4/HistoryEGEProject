@@ -1,32 +1,45 @@
-<h1 align="center">Simulator EGE in history</h1>
+<h1 align="center">Тренажер ЕГЭ по истории</h1>
 
-## Description
+## описание
 
-The Unified State Examination in history has been taking place for quite a long time, and some tasks, and in particular tasks with maps, require more effective preparation. An application that includes these tasks would greatly help students in grades 10-11 in preparing for the exam.
+ЕГЭ по истории проводится достаточно давно, и некоторые задания, а в частности задания с картами, требуют более эффективной подготовки. Приложение, включающее в себя эти задания, очень поможет ученикам 10-11 классов в подготовке к экзамену.
 
-## How to start testing
+## Как начать тест
 
-1. On the main page, go to the "Выбрать тест" tab.
+1. На главной странице перейдите на вкладку «Выбрать тест».
 
 <img src="ImageForReadMe/GeneralScreen.jpg" width="80%"></p>
 ##
 
-1. On the page that appears, select the desired section, and then the desired test. On the right side you will see information about the selected test: map preview, number of tests in the section, number of tasks in the selected test, and you can also select a random test in the selected section. After that, click on the “Выбрать” button.
+2. На появившейся странице выберите нужный раздел, а затем нужный тест. С правой стороны Вы увидите информацию о выбранном тесте: предварительный просмотр карты, количество тестов в разделе, количество заданий в выбранном тесте, а также Вы можете выбрать случайный тест в выбранном разделе. После этого нажмите на кнопку «Выбрать».
 
 <img src="ImageForReadMe/ChooseTestScreen.jpg" width="80%"></p>
 ##
 
-1. Next, you will be returned to the main screen, on which there will be a hint at the top that to start the test you need to click the "Начать тест" button.
+3. Далее Вы вернетесь на главный экран, на котором вверху будет подсказка, что для запуска теста необходимо нажать кнопку «Начать тест».
 
 <img src="ImageForReadMe/GeneralScreenAfterChoosingTest.jpg" width="80%"></p>
 ##
 
-1. You will then be taken to the test execution page, where you can begin running the test. To move between questions, you can use the "Следующий вопрос" and "Предыдущий вопрос" buttons. Answers must be entered in the window above the buttons described above. Answers must be entered without spaces. When you are ready to complete the current attempt, click the "Закончить тест" button.
+4. После этого Вы перейдете на страницу Выполнения теста, где сможете начать его выполнение. Для перемещения между вопросами можно использовать кнопки «Следующий вопрос» и «Предыдущий вопрос». Ответы необходимо вводить в окне над кнопками, описанными выше. Ответы необходимо вводить без пробелов. Когда Вы будете готовы завершить текущую попытку, нажмите кнопку «Закончить тест».
 
 <img src="ImageForReadMe/TestScreen.jpg" width="80%"></p>
 ##
 
-1. After confirming the completion of the test, you will be presented with the test results. Correct answers will be marked in green, incorrect ones will be red, and partially correct (with one error, if the task is multiple choice) yellow. You will also see the time it took you to complete the test.
+5. После подтверждения завершения теста вам будут представлены результаты теста. Правильные ответы будут отмечены зеленым цветом, неправильные – красным, частично правильные (с одной ошибкой, если задание имеет множественный выбор) – желтым. Вы также увидите время, которое Вам потребовалось для прохождения теста.
 
 <img src="ImageForReadMe/ResultsScreen.jpg" width="80%"></p>
+##
+
+## Как добавить раздел
+1. На главном экране нажмите на кнопку "Добавить".
+2. Вам будет предложено 2 варианта: "Раздел" и "Тест". Выберите "Раздел".
+3. Откроется окно, спрашивающее у Вас пароль.
+4. После введения верного пароля система уведомит Вас об этом и откроется окно Дабавления/Удаления разделов.
+5. Для добавления разделов нажмите на кнопку "Добавить". Перед Вами окажется окно, спрашивающее название раздела.
+
+<img src="ImageForReadMe/AddSectionScreen.jpg" width="80%"></p>
+
+6. После ввода названия в списке появится новый раздел.
+7. Для удаления раздела достаточно выбрать нужный раздел и нажать кнопку "Удалить".
 ##
