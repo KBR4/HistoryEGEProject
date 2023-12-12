@@ -93,42 +93,45 @@ namespace HistLib
                 }
                 else  //для вопросов с выбором ответа из нескольких утверждений (только для ответов формата цифрацифрацифра)
                 {
-                    string Ans = CorrectAnswer.GetAnswer();
-                    int len = Ans.Length;
-                    int cnt = 0;
-                    int cntwrong = 0;
-                    foreach (char c in UserAnswers[i])
+                    if (!string.IsNullOrEmpty(UserAnswers[i]))
                     {
-                        if (Ans.Contains(c))
+                        string Ans = CorrectAnswer.GetAnswer();
+                        int len = Ans.Length;
+                        int cnt = 0;
+                        int cntwrong = 0;
+                        foreach (char c in UserAnswers[i])
                         {
-                            cnt++;
-                        }
-                        else
-                        {
-                            cntwrong++;
-                        }
-                    }
-                    if (cntwrong == 1)
-                    {
-                        if (cnt == len || cnt == len - 1)
-                        {
-                            TestStats.CorrectAnswers++;
-                            TestStats.CorrectAnswerNumbers[i] = 1;
-                        }
-                    }
-                    else
-                    {
-                        if (cntwrong == 0)
-                        {
-                            if (cnt == len)
+                            if (Ans.Contains(c))
                             {
-                                TestStats.CorrectAnswers++;
-                                TestStats.CorrectAnswerNumbers[i] = 2;
+                                cnt++;
                             }
-                            if (cnt == len - 1)
+                            else
+                            {
+                                cntwrong++;
+                            }
+                        }
+                        if (cntwrong == 1)
+                        {
+                            if (cnt == len || cnt == len - 1)
                             {
                                 TestStats.CorrectAnswers++;
                                 TestStats.CorrectAnswerNumbers[i] = 1;
+                            }
+                        }
+                        else
+                        {
+                            if (cntwrong == 0)
+                            {
+                                if (cnt == len)
+                                {
+                                    TestStats.CorrectAnswers++;
+                                    TestStats.CorrectAnswerNumbers[i] = 2;
+                                }
+                                if (cnt == len - 1)
+                                {
+                                    TestStats.CorrectAnswers++;
+                                    TestStats.CorrectAnswerNumbers[i] = 1;
+                                }
                             }
                         }
                     }
