@@ -140,6 +140,13 @@ namespace HistProjTemplate
                                 if (!string.IsNullOrEmpty(sAns[0].Trim(new char[] { ' ', '\n', '\t', '\r' })) && !string.IsNullOrEmpty(sAns[1].Trim(new char[] { ' ', '\n', '\t', '\r' })))
                                 {
                                     string sq = sAns[0].Trim(new char[] { ' ', '\n', '\t', '\r' });
+                                    int p = 1;
+                                    if (sq.Contains("[MP]"))
+                                    {
+                                        p = 2;
+                                        sq = sq.Replace("[MP]", "");
+                                    }
+
                                     Question q = new Question(sq);
                                     List<string> la = new List<string>();
                                     for (int j = 1; j < sAns.Length; j++)
@@ -152,7 +159,7 @@ namespace HistProjTemplate
                                         }                                     
                                     }
                                     Answer ans = new Answer(la);
-                                    QuestionAnswer qa = new QuestionAnswer(q, ans);
+                                    QuestionAnswer qa = new QuestionAnswer(q, ans, p);
                                     lqa.Add(qa);
                                 }
                                 else

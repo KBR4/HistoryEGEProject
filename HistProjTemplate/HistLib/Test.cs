@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
 namespace HistLib
 {
     [Serializable]
@@ -24,17 +23,7 @@ namespace HistLib
         public Test(String name, string source, List<QuestionAnswer> QA)    //Создание темы по названию, изображению, массиву вопросов-ответов
         {
             Name = name;
-
             Source = source;
-            ////Проверка существование картинки по источнику (пути)
-            //if (CheckUploadImage(source))
-            //{
-            //    Source = source;
-            //}
-            //else
-            //{
-            //    source = null; //TO DO: добавить пустую картинку чтобы здесь не было пусто
-            //}
             AllQuestionsAnswers = QA;
         }
         public override string ToString()
@@ -43,8 +32,6 @@ namespace HistLib
         }
 
         //TO DO: либо исправить исходную функцию, либо перенести куда-нибудь эти
-        //Это вспомогательные функции, поэтому они не должны лежать в данном классе (мне так кажется)
-        //Встроить логику в оригинальный код (я вроде сделал, проверь Егор)
         public static bool CheckUploadImage(string source)
         {
             if (!File.Exists(source) && CheckImageExpansion(source))
@@ -96,10 +83,55 @@ namespace HistLib
             for (int i = 0; i<this.AllQuestionsAnswers.Count(); i++)
             {
                 Answer CorrectAnswer = this.AllQuestionsAnswers[i].answer;
-                if (CorrectAnswer.Check(UserAnswers[i]))
+                if (this.AllQuestionsAnswers[i].Points == 1)    //Для вопросов с выбором 1 ответа
                 {
-                    TestStats.CorrectAnswers++;
-                    TestStats.CorrectAnswerNumbers[i] = 1;
+                    if (CorrectAnswer.Check(UserAnswers[i]))
+                    {
+                        TestStats.CorrectAnswers++;
+                        TestStats.CorrectAnswerNumbers[i] = 1;
+                    }
+                }
+                else  //для вопросов с выбором ответа из нескольких утверждений (только для ответов формата цифрацифрацифра)
+                {
+                    string Ans = CorrectAnswer.GetAnswer();
+                    int len = Ans.Length;
+                    int cnt = 0;
+                    int cntwrong = 0;
+                    foreach (char c in UserAnswers[i])
+                    {
+                        if (Ans.Contains(c))
+                        {
+                            cnt++;
+                        }
+                        else
+                        {
+                            cntwrong++;
+                        }
+                    }
+                    if (cntwrong == 1)
+                    {
+                        if (cnt == len || cnt == len - 1)
+                        {
+                            TestStats.CorrectAnswers++;
+                            TestStats.CorrectAnswerNumbers[i] = 1;
+                        }
+                    }
+                    else
+                    {
+                        if (cntwrong == 0)
+                        {
+                            if (cnt == len)
+                            {
+                                TestStats.CorrectAnswers++;
+                                TestStats.CorrectAnswerNumbers[i] = 2;
+                            }
+                            if (cnt == len - 1)
+                            {
+                                TestStats.CorrectAnswers++;
+                                TestStats.CorrectAnswerNumbers[i] = 1;
+                            }
+                        }
+                    }
                 }
             }
             return TestStats;

@@ -34,23 +34,37 @@ namespace HistProjTemplate
                 t.Seconds);
 
             InitializeComponent();
+            int iUserPoints = 0;
+            int iTotalPoints = 0;
             for (int i = 0; i < CurrentTest.AllQuestionsAnswers.Count; i++)
             {
                 int Numb = i + 1;
                 string CurAnswer = UserAnswers[i];
-                string CurCorAnswer = CurrentTest.AllQuestionsAnswers[i].answer.GetAnswer();            
-                             
-                if (Stats.CorrectAnswerNumbers[i] == 1)
+                string CurCorAnswer = CurrentTest.AllQuestionsAnswers[i].answer.GetAnswer();
+
+                int CurQPoints = CurrentTest.AllQuestionsAnswers[i].Points;
+                iUserPoints = iUserPoints + Stats.CorrectAnswerNumbers[i];
+                iTotalPoints = iTotalPoints + CurQPoints;
+
+                if ((Stats.CorrectAnswerNumbers[i] == 1 && CurQPoints == 1) || Stats.CorrectAnswerNumbers[i] == 2)
                 {
+                    
                     this.ResList.Items.Add(new MyItem { Id = Numb, Ans = CurAnswer, CorAns = CurCorAnswer, Clr = "Верно" });
                 }
                 else
                 {
-                    this.ResList.Items.Add(new MyItem { Id = Numb, Ans = CurAnswer, CorAns = CurCorAnswer, Clr = "Неверно" });
+                    if (CurQPoints == 2 && Stats.CorrectAnswerNumbers[i] == 1)
+                    {
+                        this.ResList.Items.Add(new MyItem { Id = Numb, Ans = CurAnswer, CorAns = CurCorAnswer, Clr = "Частично верно" });
+                    }
+                    else
+                    {
+                        this.ResList.Items.Add(new MyItem { Id = Numb, Ans = CurAnswer, CorAns = CurCorAnswer, Clr = "Неверно" });
+                    }
                 }
 
             }
-            ResultBlock.Text = "Тест " + CurrentTest.ToString() + " завершен. Вы ответили правильно на " + Stats.CorrectAnswers + " вопросов из " + Stats.TotalQuestions + ".  Время решения теста: " + timestring + ".";
+            ResultBlock.Text = "Тест " + CurrentTest.ToString() + " завершен. Вы набрали " + iUserPoints + " баллов из " + iTotalPoints + " возможных.  Время решения теста: " + timestring + ".";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

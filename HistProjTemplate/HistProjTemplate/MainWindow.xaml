@@ -33,8 +33,6 @@
                 <Button Height="30" Width="150"  DockPanel.Dock="Top" Background="AliceBlue" x:Name="EndTestButton" Margin="10" FontSize="15" FontFamily="Arial" Click="EndTestClick">Закончить тест</Button>
             </StackPanel>
         </StackPanel>
-        <StatusBar Background="AliceBlue">
-            <TextBox FontSize="13" FontFamily="Arial">  </TextBox>
-        </StatusBar>
+
     </StackPanel>
 </Window>
