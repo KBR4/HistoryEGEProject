@@ -30,15 +30,11 @@ namespace HistProjTemplate
 
         //Листы для подгрузки
         private List<Sect> Sections;        //Сюда подгружаются разделы после десериализации
-        private List<Test> Tests;           //Сюда можно класть тесты текущего раздела (если нужно)
         private Sect CurSection;            //Текущий выбранный раздел
         private Test CurTest;               //Текущий выбранный тест
-
+        private Random rnd;
         //Возвращаемый тест
         public Test ChosenTest;             //Этот тест передаем другому окну (т.е. на выход)
-
-
-        //TO DO: Красивая обертка страницы. Marginы вокруг крайних компонентов, более красивые границы, подгонка шрифта
         public ChooseTestWindow()
         {
             InitializeComponent();
@@ -175,6 +171,8 @@ namespace HistProjTemplate
             {
                 SectionList.Items.Add(s.ToString());
             }
+            RndB.IsEnabled = false;
+            rnd = new Random();
         }    
         
         private void ConfirmClick(object sender, RoutedEventArgs e) //подтверждение, выход
@@ -229,6 +227,15 @@ namespace HistProjTemplate
             int NumbTests = CurSection.Tests.Count();
             NumbTestsBlock.Text = "Всего тестов в разделе: " + NumbTests;
             NumbQuestionsBlock.Text = "Всего вопросов в тесте: ";
+            
+            if (NumbTests > 0)
+            {
+                RndB.IsEnabled = true;
+            }
+            else
+            {
+                RndB.IsEnabled = false;
+            }
         }
 
         private void TestList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -259,6 +266,13 @@ namespace HistProjTemplate
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
+        }
+
+        private void RandomClick(object sender, RoutedEventArgs e)
+        {
+            int randtestnumb = rnd.Next(0, CurSection.Tests.Count);
+            ChosenTest = CurSection.Tests[randtestnumb];
+            this.DialogResult = true;
         }
     }
 }
