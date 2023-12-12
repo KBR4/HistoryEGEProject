@@ -114,9 +114,7 @@ namespace HistProjTemplate
 
             if (dialog.ShowDialog() == true)
             {
-                string pathToText = dialog.FileName;
-                //var encoding = GetEncoding(pathToText);               
-
+                string pathToText = dialog.FileName;          
                 Stream fs = File.OpenRead(pathToText);
                 var encoding = DetectFileEncoding(fs);
                 var enc2 = Encoding.GetEncoding(1251);

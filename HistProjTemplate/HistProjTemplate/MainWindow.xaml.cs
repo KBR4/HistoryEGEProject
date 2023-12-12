@@ -24,15 +24,7 @@ namespace HistProjTemplate
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    /// 
-
-    //TO DO: если хочется чем-то заняться, выбирать отсюда
-    //Бэкграунд - предпочтительно желтый/коричневый
-    //Рамочка вокруг карты
-    //Соединить экраны выбора и экраны добавления в один или утвердить их логику работы
-    //Если оставляем текущий вариант работы, то заставить работать кнопки на основном экране
-    //Настройки - придумать нужны ли они. Если нужны, то? размер экрана, цвет изображения, тема?
-    //Зафиксировать элементы управления - чтобы не двигались при изменении длины. Как это сделать?
+    ///    
     public partial class MainWindow : Window
     {
         private Test CurrentTest;               //активный тест
@@ -42,16 +34,6 @@ namespace HistProjTemplate
         private string[] UserAnswers;           //ответы юзера. Выбран массив из-за удобства обращения по индексу
         private DispatcherTimer timer;          //таймер
         int TestTime;                           //время выполнения текущего теста
-
-        //WPF компоненты текущего окна
-        //private Image MapImage;
-        //private TextBox AnswerBox;
-        //private TextBlock QuestionBlock;
-        //private StackPanel ButtonPanel;
-        //private Button PrevQButton;
-        //private Button NextQButton;
-        //private StackPanel QuestionAnswerPanel;
-        //private Button EndTestButton;
         public MainWindow()
         {
             InitializeComponent();
@@ -269,25 +251,12 @@ namespace HistProjTemplate
         }
         private void ShowQuestion(int n, Test t)    //Показать вопрос n теста t
         {
-            //string bigString = "very big string AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
-            //    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
-            //    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
-            //    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
-            //    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
-            //    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
-            //    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
-            //    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
-            //    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
-            //    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" +
-            //    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-            //MessageBox.Show(bigString.Length.ToString());
             if (n>=0 && n <= t.AllQuestionsAnswers.Count)
             {
                 QuestionBlock.Text = t.AllQuestionsAnswers[n].question.ToString();
                 AnswerBox.Text = UserAnswers[n];
             }           
         }
-        //TO DO: убрать из всех ответов юзера пробелы
         private void EndTestClick(object sender, RoutedEventArgs e)
         {
             UserAnswers[CurQNumber] = AnswerBox.Text;
