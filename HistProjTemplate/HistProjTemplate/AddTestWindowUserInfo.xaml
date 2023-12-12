@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
-        Title="Добавление теста из файла" Height="450" Width="800" WindowStartupLocation="CenterScreen"  Icon="Icon/Icon.jpg">
+        Title="Добавление теста из файла" Height="450" Width="800" WindowStartupLocation="CenterScreen"  Icon="Icon/Icon.jpg" ResizeMode="NoResize">
     <StackPanel Orientation="Vertical">
         <Grid Margin="10">
             <Grid.ColumnDefinitions>

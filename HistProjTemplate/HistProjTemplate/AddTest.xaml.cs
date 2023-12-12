@@ -150,28 +150,28 @@ namespace HistProjTemplate
             {
                 Test newTest = atw.AddedTest;
                 AddTestByUser(newTest);
-
-                //Егор - сделать
-                //newTest добавляется в нужный раздел и сериализуется
+                DelB.IsEnabled = true;
             }
-
-            //Старая функция
-            //PassWindow pw = new PassWindow("Введите название добавляемого теста:");
-            //if (pw.ShowDialog() == true)
-            //{
-            //    string NewTestName = pw.Password;
-            //    string SectName = SectBox.SelectedItem.ToString();
-            //    AddTestByUser(NewTestName, SectName);
-            //}
         }
 
         private void RemoveTest_Click(object sender, RoutedEventArgs e)  //Удалить выбранный тест
         {
             if (TestView.SelectedItem != null)
             {
-                string TestName = TestView.SelectedItem.ToString();
-                string SectName = SectBox.SelectedItem.ToString();
-                RemoveTestByUser(SectName, TestName);
+                ConfirmWindow cw = new ConfirmWindow("Вы уверены, что хотите удалить выбранный тест?");
+                if (cw.ShowDialog() == true)
+                {
+                    string TestName = TestView.SelectedItem.ToString();
+                    string SectName = SectBox.SelectedItem.ToString();
+                    RemoveTestByUser(SectName, TestName);
+                    if (GetSectByName(SectName) != null)
+                    {
+                        if (GetSectByName(SectName).Tests.Count == 0)
+                        {
+                            DelB.IsEnabled = false;
+                        }
+                    }                   
+                }                  
             }
             else
             {

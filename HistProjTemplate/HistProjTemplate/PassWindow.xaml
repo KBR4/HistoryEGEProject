@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
-        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"  Icon="Icon/Icon.jpg">
+        SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"  Icon="Icon/Icon.jpg" ResizeMode="NoResize">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
