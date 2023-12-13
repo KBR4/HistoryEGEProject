@@ -320,6 +320,7 @@ namespace HistProjTemplate
         {
             if (!IsTestActive)  //Если активного теста нет (не находимся в процессе выполнения)
             {
+                
                 ChooseTestWindow CTW = new ChooseTestWindow();
                 if (CTW.ShowDialog() == true)
                 {
@@ -332,7 +333,10 @@ namespace HistProjTemplate
                 }
                 else
                 {
-                    TextBlockInfo.Text = "Для начала работы выберите тест в меню";
+                    if (!IsTestChosen)
+                    {
+                        TextBlockInfo.Text = "Для начала работы выберите тест в меню";
+                    }
                 }
             }
             else //Если есть активный тест
