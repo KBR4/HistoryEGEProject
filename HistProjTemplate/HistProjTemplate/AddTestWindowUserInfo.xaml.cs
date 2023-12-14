@@ -78,7 +78,7 @@ namespace HistProjTemplate
                 //задание абсолютного пути до папки с ресурсами Images 
                 string nameFile = dialog.SafeFileName;
                 //MessageBox.Show(nameFile);  
-                pathToImages = pathToImages.Remove(pathToImages.Length - 30);
+                pathToImages = pathToImages.Remove(pathToImages.Length - 20);
                 // тут изменения
                 pathToImages += "Images\\" + nameFile/*NameTest*/;
                 //MessageBox.Show($"File name: {dialog.FileName} \nYour path: \n{pathToImages}");
