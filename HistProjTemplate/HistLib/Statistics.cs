@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HistLib
+﻿namespace HistLib
 {
     public class Statistics //класс статистики - хранит информацию о количестве вопросов в данном тесте, число правильных и номер текущего вопроса
     {

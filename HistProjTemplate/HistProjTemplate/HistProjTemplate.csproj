@@ -151,16 +151,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\ExampleImage.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\HistLib\HistLib.csproj">
       <Project>{9c5d810e-4910-48c6-9757-25c19b9df055}</Project>
       <Name>HistLib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\LightBrownBackground.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon.ico" />
