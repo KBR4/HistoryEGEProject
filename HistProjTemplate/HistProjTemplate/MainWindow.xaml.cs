@@ -25,7 +25,7 @@ namespace HistProjTemplate
         {
             InitializeComponent();
             //Внутри региона программное добавление компонентов в окно - не используется
-               #region
+            #region
 
 
             //   RowDefinition Row = new RowDefinition();
@@ -66,7 +66,7 @@ namespace HistProjTemplate
             //   Grid.SetRow(MapImage, 0);
             //   Grid.SetColumn(MapImage, 0);
             //   MainGrid.Children.Add(MapImage);
-               
+
             //   MapImage.Margin = new Thickness(20, 20, 20, 20);
 
             //   QuestionAnswerPanel = new StackPanel();
@@ -154,7 +154,7 @@ namespace HistProjTemplate
             //   Grid.SetColumn(ButtonPanel, 1);
             //   MainGrid.Children.Add(QuestionAnswerPanel);
             //   MainGrid.Children.Add(ButtonPanel);
-            
+
 
             //   //Графическое оформление - свойства
             //   TextBlockInfo.Margin = new Thickness(15, 15, 15, 15);
@@ -192,7 +192,6 @@ namespace HistProjTemplate
             Buffer.BlockCopy(buffer2, 0, dst, 0x11, 0x20);
             return Convert.ToBase64String(dst);
         }
-
 
         public static bool VerifyHashedPassword(string hashedPassword, string password)
         {
