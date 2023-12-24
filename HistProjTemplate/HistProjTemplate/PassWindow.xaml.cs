@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace HistProjTemplate
+namespace HistoryMapQuiz
 {
     /// <summary>
     /// Interaction logic for PassWindow.xaml

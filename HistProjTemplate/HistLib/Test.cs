@@ -93,6 +93,7 @@ namespace HistLib
                 {
                     if (!string.IsNullOrEmpty(UserAnswers[i]))
                     {
+                        UserAnswers[i] = new string(UserAnswers[i].ToCharArray().Distinct().ToArray());
                         string Ans = CorrectAnswer.GetAnswer();
                         int len = Ans.Length;
                         int cnt = 0;

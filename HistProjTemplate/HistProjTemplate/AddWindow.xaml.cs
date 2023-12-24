@@ -4,7 +4,7 @@ using System.Windows;
 using HistLib;
 using System.IO;
 
-namespace HistProjTemplate
+namespace HistoryMapQuiz
 {
     /// <summary>
     /// Interaction logic for AddWindow.xaml
