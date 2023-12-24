@@ -54,11 +54,11 @@ C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\Hist
 C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\AddTestWindowUserInfo.baml
 C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\AddWindow.baml
 C:\Users\Саня\Desktop\Учеба\Проект\Рабочая папка\HistoryEGEProject\HistProjTemplate\HistProjTemplate\obj\Debug\PassWindow.baml
-C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistoryMapQuiz.exe.config
-C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistoryMapQuiz.exe
-C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistoryMapQuiz.pdb
-C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistoryMapQuiz_MarkupCompile.cache
-C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistoryMapQuiz_MarkupCompile.lref
-C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistoryMapQuiz.g.resources
-C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistoryMapQuiz.exe
-C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistoryMapQuiz.pdb
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistProjTemplate.exe.config
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistProjTemplate.exe
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\bin\Debug\HistProjTemplate.pdb
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate_MarkupCompile.cache
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate_MarkupCompile.lref
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.g.resources
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.exe
+C:\Users\Professional\Desktop\C#\HistoryProject\HistProjTemplate\HistProjTemplate\obj\Debug\HistProjTemplate.pdb
