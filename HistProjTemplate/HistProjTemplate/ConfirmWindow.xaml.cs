@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace HistoryMapQuiz
+namespace HistProjTemplate
 {
     /// <summary>
     /// Interaction logic for ConfirmWindow.xaml

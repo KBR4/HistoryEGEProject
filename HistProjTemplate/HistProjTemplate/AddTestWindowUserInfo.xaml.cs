@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using HistLib;
 using Microsoft.Win32;
-namespace HistoryMapQuiz
+namespace HistProjTemplate
 {
     /// <summary>
     /// Interaction logic for AddTestWindowUserInfo.xaml

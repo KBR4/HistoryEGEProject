@@ -2,7 +2,7 @@
 using System.Windows;
 using HistLib;
 
-namespace HistoryMapQuiz
+namespace HistProjTemplate
 {
     /// <summary>
     /// Interaction logic for ResultsScreen.xaml

@@ -1,9 +1,9 @@
-﻿<Window x:Class="HistoryMapQuiz.AddWindow"
+﻿<Window x:Class="HistProjTemplate.AddWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HistoryMapQuiz"
+        xmlns:local="clr-namespace:HistProjTemplate"
         mc:Ignorable="d"
         Title="Добавление/удаление разделов" Height="450" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"  Icon="Icon/Icon.jpg">
     <StackPanel x:Name="MainPanel" Margin="10" Orientation="Horizontal">

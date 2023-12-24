@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace HistoryMapQuiz.Properties
+namespace HistProjTemplate.Properties
 {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.

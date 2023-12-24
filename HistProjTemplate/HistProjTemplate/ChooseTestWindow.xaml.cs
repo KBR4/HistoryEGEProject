@@ -8,7 +8,7 @@ using HistLib;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-namespace HistoryMapQuiz
+namespace HistProjTemplate
 {
     /// <summary>
     /// Interaction logic for ChooseTestWindow.xaml

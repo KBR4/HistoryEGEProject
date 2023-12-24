@@ -5,7 +5,7 @@ using HistLib;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace HistoryMapQuiz
+namespace HistProjTemplate
 {
     /// <summary>
     /// Interaction logic for AddTest.xaml

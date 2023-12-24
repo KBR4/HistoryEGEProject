@@ -6,7 +6,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using HistLib;
 
-namespace HistoryMapQuiz
+namespace HistProjTemplate
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
